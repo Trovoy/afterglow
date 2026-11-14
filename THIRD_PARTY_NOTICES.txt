@@ -1,0 +1,116 @@
+Afterglow 余场 控制器固件与 Afterglow Studio — 第三方组件声明
+Third-party notices for the Afterglow controller firmware and Afterglow Studio
+===========================================================================
+
+本产品包含以下第三方开源组件，或参考了其公开资料。各组件版权归原作者所有，
+按其许可证条款使用。本产品与 PixMob 公司无关联，“PixMob”为其各自权利人的商标。
+This product includes, or is based on information published by, the open-source
+projects listed below. Each remains the property of its authors and is used under
+its license. This product is not affiliated with PixMob; "PixMob" is a trademark of
+its respective owner.
+
+---------------------------------------------------------------------------
+A. 控制器固件 / Controller firmware (afterglow-fw)
+---------------------------------------------------------------------------
+
+1. pixmob-wave2-flipper-zero — on-air frame layout reference
+   https://github.com/weeknds/pixmob-wave2-flipper-zero
+   License: MIT — Copyright (c) 2026 weeknds
+
+2. PixMob_waveband — 6b8b line code, CRC and command layout research
+   https://github.com/sueppchen/PixMob_waveband
+   License: MIT — Copyright (c) 2022 Dani Weidman
+
+3. esphome-pixmob — protocol documentation (referenced, no code copied)
+   https://github.com/bharvey88/esphome-pixmob
+   License: BSD 3-Clause — Copyright (c) 2026, Brandon Harvey
+
+4. SmartRC-CC1101-Driver-Lib — CC1101 radio driver (commit de6757e)
+   https://github.com/LSatan/SmartRC-CC1101-Driver-Lib
+   License: MIT — Copyright (c) Little Satan (SmartRC)
+
+5. Arduino core for ESP32 (2.0.17) — framework
+   https://github.com/espressif/arduino-esp32
+   License: LGPL-2.1-or-later — Copyright (c) Espressif Systems and contributors
+   The unmodified core is linked into the firmware; its source code is available at the URL above.
+
+6. ESP-IDF (4.4) — SDK used by the Arduino core
+   https://github.com/espressif/esp-idf
+   License: Apache-2.0 — Copyright (c) Espressif Systems (Shanghai) Co., Ltd.
+
+---------------------------------------------------------------------------
+B. Afterglow Studio (Windows)
+---------------------------------------------------------------------------
+
+7.  Python 3.12 runtime — PSF License — Copyright (c) Python Software Foundation
+8.  Tcl/Tk — BSD-style license — Copyright (c) The Regents of the University of California, Sun Microsystems and others
+9.  esptool 4.8.1 — ESP32 flashing tool
+    https://github.com/espressif/esptool
+    License: GPL-2.0-or-later — Copyright (c) Fredrik Ahlberg, Angus Gratton, Espressif Systems and contributors
+    esptool is bundled unmodified and runs as a separate program. Its complete source code is
+    available at the URL above (tag v4.8.1); a copy will be provided on request.
+10. pyserial 3.5 — BSD 3-Clause — Copyright (c) 2001-2020 Chris Liechti
+11. NumPy — BSD 3-Clause (and bundled components under 0BSD, MIT, Zlib, CC0) — Copyright (c) NumPy Developers
+12. PyAudioWPatch — Apache-2.0 — Copyright (c) s0d3s; based on PyAudio (MIT, Copyright (c) Hubert Pham)
+    and PortAudio (MIT-style, Copyright (c) Ross Bencina, Phil Burk)
+13. pywebview 5.3.2 — BSD 3-Clause — Copyright (c) Roman Sirokov
+14. pythonnet / clr_loader — MIT — Copyright (c) .NET Foundation and contributors
+15. Microsoft Edge WebView2 Runtime — used from the operating system, not redistributed
+16. sv-ttk (Sun Valley theme) — MIT — Copyright (c) rdbende
+17. PyInstaller bootloader — GPL-2.0-or-later with the PyInstaller bootloader exception (permits distributing the bundled application)
+
+18. FFmpeg 9.0.2 (ffmpeg.exe) — static "essentials" build from www.gyan.dev
+    License: GPL-3.0 (this build) — Copyright (c) the FFmpeg developers — https://ffmpeg.org
+    Bundled unmodified and run as separate programs. Corresponding source code:
+    https://github.com/FFmpeg/FFmpeg/commit/946fcce07b ; build configuration in ffmpeg/README.txt,
+    licence text in ffmpeg/LICENSE. A copy of the source will be provided on request.
+
+---------------------------------------------------------------------------
+License texts
+---------------------------------------------------------------------------
+
+MIT License
+-----------
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+and associated documentation files (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+BSD 3-Clause License
+--------------------
+Redistribution and use in source and binary forms, with or without modification, are permitted
+provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions
+   and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of
+   conditions and the following disclaimer in the documentation and/or other materials provided
+   with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to
+   endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Apache License 2.0, GNU LGPL 2.1, GNU GPL 2.0 and the PSF License
+------------------------------------------------------------------
+Full texts: https://www.apache.org/licenses/LICENSE-2.0
+            https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+            https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+            https://docs.python.org/3/license.html
+Copies of these texts are included in the respective packages bundled with Afterglow Studio.

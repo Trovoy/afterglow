@@ -1,0 +1,55 @@
+name: 问题反馈
+description: 软件、固件或手环控制出了问题
+labels: ["问题"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先看一遍 [常见问题](https://github.com/Trovoy/afterglow/blob/main/docs/常见问题.md)。
+        请不要在这里贴出你的 Wi-Fi 密码、手机号等个人信息。
+  - type: input
+    id: studio
+    attributes:
+      label: Afterglow Studio 版本
+      description: 软件左上角显示，例如 v0.4.1。没用电脑端可以不填。
+      placeholder: v0.4.1
+  - type: input
+    id: firmware
+    attributes:
+      label: 固件版本
+      description: Studio 左下角或手机页面「高级设置」里显示，例如 0.9.2。
+      placeholder: 0.9.2
+  - type: dropdown
+    id: where
+    attributes:
+      label: 问题出在哪里
+      options:
+        - 刷机 / 更新
+        - 手机连接控制器
+        - 手环不亮 / 反应不对
+        - 音乐律动
+        - 演唱会复刻
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 你做了哪些操作，期望看到什么，实际看到什么。
+      placeholder: |
+        1. 连接控制器
+        2. 点「完整安装」
+        3. 提示……
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 截图或日志
+      description: 可以把截图拖进来；Studio 的「通信日志」页面可以复制日志。
+  - type: input
+    id: system
+    attributes:
+      label: 电脑系统 / 手机型号
+      placeholder: Windows 11；iPhone 15

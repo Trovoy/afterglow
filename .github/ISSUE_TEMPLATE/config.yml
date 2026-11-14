@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 先看常见问题
+    url: https://github.com/Trovoy/afterglow/blob/main/docs/常见问题.md
+    about: 手环不亮、搜不到热点、刷机失败等常见情况，这里大多有答案。
