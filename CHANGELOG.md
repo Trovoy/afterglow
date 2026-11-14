@@ -4,6 +4,16 @@
 
 电脑端软件（Afterglow Studio）和控制器固件分别编号；每个 Studio 版本都自带当时最新的固件。
 
+## [Studio 0.4.2 / 固件 0.9.2] - 2026-11-14
+
+### 修复
+
+- 从网上下载后打开软件报错「Failed to resolve Python.Runtime.Loader.Initialize」：Windows 给下载的文件打了锁定标记，界面组件被拒绝加载。现在软件启动时会自动解除，安装程序装出来的文件也不再带这个标记
+
+### 改进
+
+- 改成标准的 Windows 安装程序：一个 exe，中文安装向导，可选桌面快捷方式，卸载在「设置 → 应用」里；不需要管理员权限，升级时保留复刻和手环档案
+
 ## [Studio 0.4.1 / 固件 0.9.2] - 2026-11-14
 
 首次公开发布。
@@ -27,4 +37,5 @@
 
 - 发射功率 10 dBm（10 mW），频率、码元宽度已用无线电测量设备核对；室内有效距离约 1 米（0.7～1.3 米，取决于手环朝向和摆放）
 
+[Studio 0.4.2 / 固件 0.9.2]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.2
 [Studio 0.4.1 / 固件 0.9.2]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.1

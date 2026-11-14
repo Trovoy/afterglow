@@ -52,7 +52,7 @@
 
 ## 第 3 步　刷机、连手机、点亮
 
-1. **刷机**：到 [Releases](https://github.com/Trovoy/afterglow/releases/latest) 下载 **Afterglow Studio** 并安装。用数据线连上 ESP32，点「烧录 / 更新」→「完整安装」，等 1 分钟。
+1. **刷机**：到 [Releases](https://github.com/Trovoy/afterglow/releases/latest) 下载 **Afterglow Studio 安装程序**（`Afterglow-Studio-Setup-….exe`），双击安装。用数据线连上 ESP32，点「烧录 / 更新」→「完整安装」，等 1 分钟。
 2. **连手机**：手机 Wi-Fi 连 **Afterglow-XXXX**，密码 **`afterglow88`**，控制页面会自己弹出来（没弹就在浏览器打开 `192.168.4.1`）。
 3. **点亮**：手环装上新电池，放在旁边。按页面提示做一次「频率适配」，点「唤醒」等 30 秒，再点颜色。🎉
 

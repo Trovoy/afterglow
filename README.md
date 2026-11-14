@@ -62,14 +62,15 @@
 
 | 文件 | 是什么 |
 | --- | --- |
-| `Afterglow-Studio-x.y.z-Windows.zip` | 电脑端软件，里面已经带了最新固件 |
+| `Afterglow-Studio-Setup-x.y.z.exe` | **电脑端安装程序，下载这一个就行**，已自带最新固件 |
+| `Afterglow-Studio-x.y.z-Windows.zip` | 同一个安装程序的压缩包版（方便放进网盘） |
 | `afterglow-fw-x.y.z.zip` | 控制器固件（Studio 里已自带，一般不用单独下载） |
 | `Afterglow-DIY-Guide.pdf` | 可打印的 DIY 指南 |
 | `SHA256SUMS.txt` | 文件校验值 |
 
 GitHub 下载慢的话，可以多试几次，或者用手机热点下载。
 
-**安装：** 解压 → 双击「安装 Afterglow Studio.cmd」。Windows 弹出「Windows 已保护你的电脑」时，点 **更多信息 → 仍要运行**。软件没有做付费代码签名，所以会有这个提示。
+**安装：** 双击安装程序，按提示点「我同意 → 下一步 → 安装」。Windows 弹出「Windows 已保护你的电脑」时，点 **更多信息 → 仍要运行**（软件没有购买代码签名证书，所以会有这个提示）。不需要管理员权限；卸载在 Windows「设置 → 应用」里。
 
 ## 系统要求
 
