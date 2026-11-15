@@ -2,38 +2,19 @@
 
 不用焊接，插几根线，让演唱会带回来的 433 MHz 手环重新亮起来。**总共 3 步，大约半小时。**
 
-> 不想动手？闲鱼搜「Afterglow 余场」，有装好、测好的成品。
-> 想打印？到 [Releases](https://github.com/Trovoy/afterglow/releases/latest) 下载 PDF 版。
 
 ---
 
-## 第 1 步　买东西（约 70 元）
+## 第 1 步　准备零件
 
-### 一键加购
-
-**方法一：** 手机淘宝扫这个二维码。
-
-
-**方法二：** 点下面框右上角的 📋 **复制按钮**，打开淘宝 App，会自动弹出购物车。
-
-```
-```
-
-进去以后**全选、结算**就行。另外准备一根**能传数据的 Type-C 线**（有的线只能充电，不行）。
-
-### 口令打不开时，单独买这 5 样
-
-进链接后**按「选这个款式」选**，买错款式可能用不了。
-
-| 东西 | 选这个款式 | 链接 |
+| 零件 | 要求 | 说明 |
 | --- | --- | --- |
-| ESP32 开发板 | ESP-32 Type-C口 CH340C 焊针 30Pin | [天猫](https://detail.tmall.com/item.htm?id=610269831309) |
-| 433 射频模块 | E07-M1101D-SMA｜已配胶棒天线 | [天猫](https://detail.tmall.com/item.htm?id=602216942467) |
-| 麦克风（可不买） | 向下焊接 INMP441 麦克风模块 | [天猫](https://detail.tmall.com/item.htm?id=675209869992) |
-| 杜邦线 | 母对母 20CM、公对母 20CM 各一排 | [淘宝](https://item.taobao.com/item.htm?id=40566558688) |
-| 面包板 | 400孔 带背胶可拼接 | [天猫](https://detail.tmall.com/item.htm?id=678194073904) |
-
-麦克风不买也能用，买了手环就能跟着音乐闪。
+| ESP32 开发板 | 经典 ESP32（ESP32-WROOM-32），30 针，USB 芯片 CH340，Type-C 接口，已焊排针 | ESP32-C3、S3、S2、Super Mini 等型号**不支持** |
+| 433 MHz 射频模块 | 亿佰特 E07-M1101D-SMA（CC1101），带 SMA 胶棒天线 | 天线必须装上 |
+| 数字麦克风（可选） | INMP441 模块，I²S 接口 | 不接也能用；接上后手环能跟着音乐闪 |
+| 杜邦线 | 20 cm，母对母、公对母各若干 | |
+| 面包板 | 400 孔 | 用来给 3V3 和 GND 分线 |
+| 数据线 | 能传数据的 USB Type-C 线 | 只能充电的线刷不了机 |
 
 ---
 
@@ -52,7 +33,7 @@
 
 ## 第 3 步　刷机、连手机、点亮
 
-1. **刷机**：到 [Releases](https://github.com/Trovoy/afterglow/releases/latest) 下载 **Afterglow Studio 安装程序**（`Afterglow-Studio-Setup-….exe`），双击安装。用数据线连上 ESP32，点「烧录 / 更新」→「完整安装」，等 1 分钟。
+1. **刷机**：到 [Releases](https://github.com/Trovoy/afterglow/releases/latest) 下载 **Afterglow Studio 安装程序**（`Afterglow-Studio-Setup-….exe`），双击安装后打开，会弹出新手引导：用数据线插上 ESP32，点「刷入固件」，等 1 分钟。
 2. **连手机**：手机 Wi-Fi 连 **Afterglow-XXXX**，密码 **`afterglow88`**，控制页面会自己弹出来（没弹就在浏览器打开 `192.168.4.1`）。
 3. **点亮**：手环装上新电池，放在旁边。按页面提示做一次「频率适配」，点「唤醒」等 30 秒，再点颜色。🎉
 
