@@ -1,0 +1,15 @@
+﻿Afterglow Studio {VERSION}（Windows 电脑端）
+
+安装
+1. 双击 Afterglow-Studio-Setup-{VERSION}.exe。
+2. 如果弹出「Windows 已保护你的电脑」，点「更多信息」→「仍要运行」。
+   （软件没有购买代码签名证书，所以 Windows 会提示，这是正常的。）
+3. 在安装窗口里点「安装」，几秒钟就装好，点「打开 Afterglow Studio」即可开始用。
+
+不需要管理员权限。软件里已经带了最新的控制器固件，连上控制器后在「烧录 / 更新」页面刷机即可。
+
+升级：直接运行新版安装程序，你的复刻和手环档案会保留。
+卸载：Windows「设置」→「应用」→ 找到 Afterglow Studio → 卸载。
+
+系统要求：Windows 10 / 11（64 位）
+使用帮助：软件左侧的「帮助」页面，或 https://github.com/Trovoy/afterglow

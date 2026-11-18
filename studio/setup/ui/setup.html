@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>Afterglow Studio 安装</title>
+<style>
+/* Afterglow custom installer. One window, states: ready / installing / done / error / uninstall / removing / removed.
+   Talks to setup_app.py through window.pywebview.api; ?mock runs a fake backend for design previews. */
+@font-face { font-family: 'SG'; src: local('Space Grotesk'), local('SpaceGrotesk-Regular'); }
+:root { --bg: #0E1016; --fg: #F2EEE7; --mut: rgba(242,238,231,.55); --dim: rgba(242,238,231,.32); --line: rgba(255,255,255,.08);
+        --acc: #FF8A4C; --grad: linear-gradient(100deg, #FFB067 0%, #FF7A55 55%, #E8507C 100%); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--fg);
+  font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', sans-serif; -webkit-font-smoothing: antialiased; user-select: none; }
+#app { position: relative; width: 100%; height: 100%; display: grid; grid-template-columns: 46% 54%; }
+#glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 70% at 22% 62%, rgba(255,138,76,.16), transparent 70%),
+              radial-gradient(ellipse 50% 60% at 100% 0%, rgba(166,77,255,.07), transparent 70%); transition: opacity .8s; }
+#scene { position: relative; }
+#cv { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.drag { position: absolute; left: 0; right: 96px; top: 0; height: 40px; z-index: 5; }
+#ctl { position: absolute; right: 8px; top: 8px; z-index: 6; display: flex; gap: 2px; }
+#ctl button { width: 40px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: var(--mut); cursor: pointer;
+  display: grid; place-items: center; transition: background .2s, color .2s; }
+#ctl button:hover { background: rgba(255,255,255,.07); color: var(--fg); }
+#ctl button.x:hover { background: #c4314b; color: #fff; }
+#side { position: relative; padding: 58px 54px 36px 14px; display: flex; flex-direction: column; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand .mk { width: 44px; height: 44px; flex: none; }
+.wmimg { height: 28px; width: auto; flex: none; }
+.wm { white-space: nowrap; }
+.wm .w { font-family: 'Space Grotesk', 'SG', 'Segoe UI', sans-serif; font-size: 30px; letter-spacing: -0.03em; }
+.wm .bar { display: inline-block; width: 1px; height: 16px; background: #3A3F4C; margin: 0 11px; vertical-align: 2px; }
+.wm .z { font-size: 17px; letter-spacing: .28em; color: #D8D3CB; font-family: 'Songti SC', 'SimSun', serif; }
+.ver { margin-top: 10px; font-size: 13px; color: var(--dim); letter-spacing: .06em; }
+.headline { margin-top: 38px; font-size: 26px; font-weight: 600; letter-spacing: .04em; line-height: 1.5; }
+.sub { margin-top: 12px; font-size: 14px; color: var(--mut); line-height: 1.75; letter-spacing: .02em; }
+.spacer { flex: 1; }
+.btn { position: relative; height: 52px; border: 0; border-radius: 26px; font: inherit; font-size: 17px; font-weight: 600; letter-spacing: .12em;
+  cursor: pointer; color: #1a0e08; background: var(--grad); box-shadow: 0 10px 30px rgba(255,122,85,.28);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, filter .25s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(255,122,85,.38); filter: brightness(1.05); }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn.ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); }
+.row { display: flex; gap: 12px; }
+.row .btn { flex: 1; }
+.opts { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--mut); }
+.check { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; width: fit-content; }
+.check input { appearance: none; width: 16px; height: 16px; border-radius: 5px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.28); display: grid; place-items: center; transition: all .2s; cursor: pointer; }
+.check input:checked { background: var(--acc); box-shadow: none; }
+.check input:checked::after { content: ''; width: 8px; height: 4px; border: 2px solid #1a0e08; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px,-1px); }
+.legal { font-size: 12px; color: var(--dim); }
+.legal a { color: var(--mut); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); cursor: pointer; }
+.legal a:hover { color: var(--fg); }
+.path { font-size: 12px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.where { display: flex; gap: 10px; align-items: baseline; font-size: 12px; color: var(--dim); }
+.where span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.where a { flex: none; color: var(--mut); cursor: pointer; border-bottom: 1px solid rgba(255,255,255,.2); }
+.where a:hover { color: var(--fg); }
+.where a.note { border: 0; cursor: default; color: var(--dim); pointer-events: none; }
+/* progress */
+.prog { height: 52px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.prog .top { display: flex; justify-content: space-between; font-size: 13px; color: var(--mut); }
+.prog .top b { font-family: 'Space Grotesk', 'SG', 'Segoe UI', sans-serif; font-weight: 500; color: var(--fg); font-size: 15px; }
+.track { height: 4px; border-radius: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
+.fill { height: 100%; width: 0; border-radius: 2px; background: var(--grad); box-shadow: 0 0 14px rgba(255,138,76,.7); transition: width .35s cubic-bezier(.2,.8,.2,1); }
+/* state switching with cross-fades */
+[data-show] { transition: opacity .45s cubic-bezier(.2,.8,.2,1), transform .45s cubic-bezier(.2,.8,.2,1); }
+.hide { opacity: 0 !important; transform: translateY(8px); pointer-events: none; position: absolute !important; visibility: hidden; }
+/* licence overlay */
+#lic { position: absolute; inset: 0; z-index: 8; background: rgba(8,9,13,.72); backdrop-filter: blur(10px); display: grid; place-items: center;
+  opacity: 0; pointer-events: none; transition: opacity .35s; }
+#lic.on { opacity: 1; pointer-events: auto; }
+#lic .card { width: 82vw; height: 80vh; overflow: hidden; background: #151821; border-radius: 18px; box-shadow: 0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.5);
+  display: flex; flex-direction: column; transform: translateY(14px) scale(.98); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+#lic.on .card { transform: none; }
+#lic h3 { padding: 22px 26px 12px; font-size: 16px; font-weight: 600; letter-spacing: .04em; }
+#lic pre { flex: 1; min-height: 0; overflow: auto; padding: 0 26px; font: 12.5px/1.85 'Microsoft YaHei UI', sans-serif; color: var(--mut); white-space: pre-wrap; user-select: text; }
+#lic pre::-webkit-scrollbar { width: 8px; } #lic pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 4px; }
+#lic .foot { padding: 16px 26px 22px; display: flex; justify-content: flex-end; }
+#lic .foot .btn { height: 40px; padding: 0 28px; font-size: 14px; }
+.err { color: #ff8a8a; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="glow"></div>
+  <div class="drag pywebview-drag-region"></div>
+  <div id="ctl"><button title="最小化" onclick="api('minimize')"><svg width="12" height="12"><path d="M1 6h10" stroke="currentColor" stroke-width="1.3"/></svg></button><button class="x" title="关闭" onclick="api('close')"><svg width="12" height="12"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="currentColor" stroke-width="1.3"/></svg></button></div>
+
+  <canvas id="cv"></canvas>
+  <div id="scene" class="pywebview-drag-region"></div>
+
+  <div id="side">
+    <div class="brand pywebview-drag-region"><img class="mk" src="logo.svg" alt=""><img class="wmimg" src="wordmark.png" alt="afterglow 余场"></div>
+    <div class="ver" id="ver">Afterglow Studio</div>
+
+    <!-- ready -->
+    <div data-show="ready">
+      <div class="headline">让散场后的手环，<br>再亮一次</div>
+      <div class="sub" id="readysub">电脑端控制软件，内含最新固件。<br>装好后用数据线连上控制器即可。</div>
+    </div>
+    <!-- installing -->
+    <div data-show="installing" class="hide">
+      <div class="headline">正在安装…</div>
+      <div class="sub">稍等片刻，不用做任何操作。</div>
+    </div>
+    <!-- done -->
+    <div data-show="done" class="hide">
+      <div class="headline">装好了</div>
+      <div class="sub">打开软件，用数据线连上控制器，<br>在「烧录 / 更新」里刷一次固件就能用了。</div>
+    </div>
+    <!-- error -->
+    <div data-show="error" class="hide">
+      <div class="headline" id="errhead">没装上</div>
+      <div class="sub err" id="errmsg">出了点问题。</div>
+    </div>
+    <!-- uninstall -->
+    <div data-show="uninstall" class="hide">
+      <div class="headline">卸载 Afterglow Studio？</div>
+      <div class="sub">软件会从这台电脑上移除。<br>控制器里的固件和设置不受影响。</div>
+    </div>
+    <div data-show="removing" class="hide">
+      <div class="headline">正在卸载…</div>
+      <div class="sub">马上就好。</div>
+    </div>
+    <div data-show="removed" class="hide">
+      <div class="headline">已卸载</div>
+      <div class="sub">感谢使用。想回来随时可以重新安装。</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- bottom actions -->
+    <div data-show="ready">
+      <button class="btn" style="width:100%" onclick="doInstall()" id="btn-install">安装</button>
+      <div class="opts">
+        <label class="check"><input type="checkbox" id="desk" checked>创建桌面快捷方式</label>
+        <div class="legal">点击「<span id="actname">安装</span>」即表示你同意 <a onclick="showLic(true)">使用协议与免责声明</a></div>
+        <div class="where"><span id="path"></span><a id="chg" onclick="pickDir()">更改</a></div>
+      </div>
+    </div>
+    <div data-show="installing removing" class="hide">
+      <div class="prog"><div class="top"><span id="ptext">准备中</span><b id="pnum">0%</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
+      <div class="opts"><div class="path">&nbsp;</div><div class="path">&nbsp;</div></div>
+    </div>
+    <div data-show="done" class="hide">
+      <div class="row"><button class="btn" onclick="api('open_app').then(() => api('close'))">打开 Afterglow Studio</button></div>
+      <div class="opts"><div class="legal"><a onclick="api('close')">完成，稍后再打开</a></div><div class="path">&nbsp;</div></div>
+    </div>
+    <div data-show="error" class="hide">
+      <div class="row"><button class="btn" id="errgo" onclick="errAction()">重试</button><button class="btn ghost" onclick="api('close')">关闭</button></div>
+      <div class="opts"><div class="path">&nbsp;</div><div class="path">&nbsp;</div></div>
+    </div>
+    <div data-show="uninstall" class="hide">
+      <div class="row"><button class="btn ghost" onclick="api('close')">取消</button><button class="btn" onclick="doUninstall()">卸载</button></div>
+      <div class="opts"><label class="check"><input type="checkbox" id="deldata">同时删除我的复刻和手环档案</label><div class="path">&nbsp;</div></div>
+    </div>
+    <div data-show="removed" class="hide">
+      <div class="row"><button class="btn ghost" onclick="api('close')">关闭</button></div>
+      <div class="opts"><div class="path">&nbsp;</div><div class="path">&nbsp;</div></div>
+    </div>
+  </div>
+
+  <div id="lic" onclick="if (event.target === this) showLic(false)"><div class="card"><h3>使用协议与免责声明</h3><pre id="lictext"></pre><div class="foot"><button class="btn" onclick="showLic(false)">知道了</button></div></div></div>
+</div>
+
+<script>
+// ---------- backend bridge ----------
+window.onerror = (m, src, line) => { try { window.pywebview.api.log(`JS ${m} @${line}`); } catch (e) {} };
+const api = (name, ...args) => (window.pywebview && window.pywebview.api && window.pywebview.api[name]) ? window.pywebview.api[name](...args) : Promise.resolve(null);
+let STATE = 'ready';
+function setState(s) {
+  STATE = s;
+  document.querySelectorAll('[data-show]').forEach((el) => el.classList.toggle('hide', !el.dataset.show.split(' ').includes(s)));
+  $('glow').style.opacity = (s === 'error') ? 0.4 : 1;
+}
+const $ = (id) => document.getElementById(id);
+function showLic(on) { $('lic').classList.toggle('on', on); }
+let progress = 0, target = 0;
+window.onProgress = (pct, text) => { target = pct; $('ptext').textContent = text; };
+window.onFinished = (ok, msg, code) => {
+  if (ok) { target = 100; setTimeout(() => { setState(STATE === 'removing' ? 'removed' : 'done'); }, 500); }
+  else {
+    const un = MODE === 'uninstall', running = code === 'running';
+    $('errhead').textContent = running ? (un ? '还不能卸载' : '还不能安装') : (un ? '没卸载成功' : '没装上');
+    $('errmsg').textContent = msg || '出了点问题。';
+    $('errmsg').classList.toggle('err', !running);
+    $('errgo').textContent = running ? '关闭软件并继续' : '重试';
+    ERR_CODE = code;
+    setState('error');
+  }
+};
+let MODE = 'install', ERR_CODE = '';
+async function errAction() {
+  if (ERR_CODE === 'running') {
+    $('errgo').textContent = '正在关闭…';
+    await api('close_app');
+    return MODE === 'uninstall' ? doUninstall() : doInstall();
+  }
+  setState(MODE === 'uninstall' ? 'uninstall' : 'ready');     // back to where the user was
+}
+async function pickDir() {
+  const r = await api('choose_dir');
+  if (!r) return;
+  $('path').textContent = `安装到 ${r.path}`;
+  $('btn-install').textContent = $('actname').textContent = r.upgrade ? '升级' : '安装';
+}
+function doInstall() { setState('installing'); target = 0; progress = 0; api('install', $('desk').checked); }
+function doUninstall() { setState('removing'); target = 0; progress = 0; api('uninstall', $('deldata').checked); }
+
+// ---------- capsule scene (same look as the promo) ----------
+const cv = $('cv'), ctx = cv.getContext('2d');
+let DPR = 1, W = 0, H = 0;
+function resize() { DPR = window.devicePixelRatio || 1; W = cv.clientWidth; H = cv.clientHeight; cv.width = W * DPR; cv.height = H * DPR; }
+window.addEventListener('resize', resize);
+const hex = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+const mix = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
+const rgba = (c, a) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
+const AMBER = hex('#FFB067'), WHITE = hex('#FFF6EA'), BLACK = [0, 0, 0];
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+function pod(sx, sy, h, c, I, amb) {
+  const w = h * 0.7, r = w * 0.44, x = sx - w / 2, y = sy - h;
+  ctx.save(); ctx.globalCompositeOperation = 'lighter';
+  if (I > 0.01) {
+    const pool = ctx.createRadialGradient(sx, sy, 0, sx, sy, w * 2.4);
+    pool.addColorStop(0, rgba(c, .7 * I)); pool.addColorStop(.35, rgba(c, .24 * I)); pool.addColorStop(1, rgba(c, 0));
+    ctx.save(); ctx.translate(sx, sy); ctx.scale(1, .22); ctx.translate(-sx, -sy); ctx.fillStyle = pool; ctx.fillRect(sx - w * 2.6, sy - w * 2.6, w * 5.2, w * 5.2); ctx.restore();
+    const bl = ctx.createRadialGradient(sx, sy - h * .5, 0, sx, sy - h * .5, h * 1.3);
+    bl.addColorStop(0, rgba(c, .5 * I)); bl.addColorStop(.4, rgba(c, .15 * I)); bl.addColorStop(1, rgba(c, 0));
+    ctx.fillStyle = bl; ctx.fillRect(sx - h * 1.4, sy - h * 1.9, h * 2.8, h * 2.8);
+  }
+  ctx.restore();
+  ctx.save(); ctx.translate(0, sy * 2); ctx.scale(1, -1); rr(x, y, w, h, r); ctx.clip();
+  const lit = mix(mix(hex('#2a2b30'), hex('#d8d4cc'), amb), c, I * .85);
+  const rg = ctx.createLinearGradient(0, sy, 0, sy - h * .75); rg.addColorStop(0, rgba(lit, .36 * Math.max(amb, I))); rg.addColorStop(1, rgba(lit, 0));
+  ctx.fillStyle = rg; ctx.fillRect(x - 5, y - 5, w + 10, h + 10); ctx.restore();
+  rr(x, y, w, h, r); ctx.save(); ctx.clip();
+  const base = ctx.createLinearGradient(0, y, 0, sy);
+  base.addColorStop(0, rgba(mix(hex('#15161a'), hex('#e9e5de'), amb), 1)); base.addColorStop(1, rgba(mix(hex('#0b0c0e'), hex('#8d8983'), amb), 1));
+  ctx.fillStyle = base; ctx.fillRect(x, y, w, h);
+  if (I > 0.01) {
+    const core = ctx.createRadialGradient(sx, y + h * .55, h * .02, sx, y + h * .55, h * .72);
+    core.addColorStop(0, rgba(mix(c, WHITE, .82), I)); core.addColorStop(.28, rgba(mix(c, WHITE, .25), I));
+    core.addColorStop(.75, rgba(c, I * .95)); core.addColorStop(1, rgba(mix(c, BLACK, .35), I * .95));
+    ctx.fillStyle = core; ctx.fillRect(x, y, w, h);
+  }
+  const side = ctx.createLinearGradient(x, 0, x + w, 0);
+  side.addColorStop(0, 'rgba(0,0,0,.28)'); side.addColorStop(.22, 'rgba(0,0,0,0)'); side.addColorStop(.75, 'rgba(0,0,0,0)'); side.addColorStop(1, 'rgba(0,0,0,.34)');
+  ctx.fillStyle = side; ctx.fillRect(x, y, w, h);
+  const spec = ctx.createLinearGradient(0, y, 0, y + h * .4); spec.addColorStop(0, `rgba(255,255,255,${.22 * Math.max(amb, .25)})`); spec.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = spec; ctx.fillRect(x, y, w, h * .4);
+  ctx.strokeStyle = `rgba(255,255,255,${.1 + .08 * I})`; ctx.lineWidth = Math.max(1, h * .006);
+  ctx.beginPath(); ctx.moveTo(x + w * .16, y + h * .2); ctx.quadraticCurveTo(sx, y + h * .23, x + w * .84, y + h * .2); ctx.stroke();
+  ctx.restore();
+  rr(x, y, w, h, r); ctx.strokeStyle = I > .01 ? rgba(mix(c, WHITE, .6), .35 * I + .08) : `rgba(255,255,255,${.08 + .12 * amb})`;
+  ctx.lineWidth = Math.max(1, h * .008); ctx.stroke();
+}
+let glowI = 0;
+const T0 = performance.now();
+function frame(now) {
+  const t = (now - T0) / 1000;
+  progress += (target - progress) * 0.08;
+  if (STATE === 'installing' || STATE === 'removing') { $('pfill').style.width = progress.toFixed(1) + '%'; $('pnum').textContent = Math.round(progress) + '%'; }
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H);
+  // brightness target per state (breathing when idle, follows progress, full and calm when done);
+  // the capsule always eases towards it, never jumps
+  let goal = 0.55 + 0.1 * Math.sin(t * 1.6);
+  if (STATE === 'installing') goal = 0.45 + 0.5 * (progress / 100);
+  if (STATE === 'done') goal = 1;
+  if (STATE === 'removing') goal = 0.15 + 0.6 * (1 - progress / 100);
+  if (STATE === 'removed') goal = 0.08;
+  if (STATE === 'error') goal = 0.2;
+  glowI += (goal - glowI) * 0.045;
+  const I = glowI, c = AMBER;
+  const amb = 0.3;
+  const h = Math.min(H * 0.36, W * 0.22);
+  pod(W * 0.235, H * 0.6 + Math.sin(t * 1.1) * 3, h, c, I, amb);
+  requestAnimationFrame(frame);
+}
+
+// ---------- start ----------
+async function boot() {
+  resize();
+  api('log', `boot ${innerWidth}x${innerHeight} dpr ${devicePixelRatio}`);
+  const info = (await api('info')) || {};
+  $('ver').textContent = `Afterglow Studio ${info.version || ''}`;
+  $('path').textContent = info.path ? (info.upgrade ? `已安装在 ${info.path}` : `安装到 ${info.path}`) : '';
+  $('lictext').textContent = info.license || '';
+  if (info.upgrade) {
+    $('btn-install').textContent = '升级'; $('actname').textContent = '升级';
+    $('readysub').innerHTML = '这台电脑已经装过 Afterglow Studio。<br>升级会装在原来的位置，你的复刻和档案都会保留。';
+    $('chg').style.display = 'none';
+  }
+  MODE = info.mode === 'uninstall' ? 'uninstall' : 'install';
+  setState(MODE === 'uninstall' ? 'uninstall' : 'ready');
+  requestAnimationFrame(frame);
+  // show the window now that the content is in place (a hidden window renders no frames, so no rAF here)
+  setTimeout(() => api('ready'), 30);
+}
+if (location.search.includes('mock')) {
+  // design preview: fake backend; ?mock&state=done freezes a state
+  const q = new URLSearchParams(location.search);
+  window.pywebview = { api: {
+    info: () => Promise.resolve({ version: '0.4.2', path: 'C:\\Users\\你\\AppData\\Local\\Programs\\Afterglow Studio', upgrade: q.has('upgrade'),
+      mode: q.get('state') === 'uninstall' ? 'uninstall' : 'install', license: '一、使用许可\n1. 本软件和控制器固件按 MIT 许可证开源……\n2. 名称和标志不在 MIT 许可范围内……\n\n二、免责声明\n1. 按现状提供……\n2. 风险自负……\n3. 无线电使用……\n4. 不得在演出现场使用……\n'.repeat(5) }),
+    install: () => { let p = 0; const iv = setInterval(() => { p += 7; window.onProgress(Math.min(p, 100), p < 90 ? '正在复制文件' : '正在创建快捷方式'); if (p >= 100) { clearInterval(iv); window.onFinished(true); } }, 160); return Promise.resolve(); },
+    uninstall: () => { let p = 0; const iv = setInterval(() => { p += 12; window.onProgress(Math.min(p, 100), '正在删除文件'); if (p >= 100) { clearInterval(iv); window.onFinished(true); } }, 160); return Promise.resolve(); },
+    open_app: () => Promise.resolve(), close: () => Promise.resolve(), minimize: () => Promise.resolve() } };
+  boot().then(() => {
+    const s = q.get('state');
+    if (s === 'installing') { setState('installing'); target = progress = 62; window.onProgress(62, '正在复制文件'); }
+    if (s === 'done') { setState('done'); glowI = 1; }
+    if (s === 'license') showLic(true);
+    if (s === 'removed') setState('removed');
+  });
+} else {
+  // pywebview may already be ready when this script runs; never miss it, never boot twice
+  let booted = false;
+  const go = () => { if (!booted && window.pywebview && window.pywebview.api && window.pywebview.api.info) { booted = true; boot(); } };
+  window.addEventListener('pywebviewready', go);
+  const poll = setInterval(() => { go(); if (booted) clearInterval(poll); }, 100);
+}
+</script>
+</body>
+</html>

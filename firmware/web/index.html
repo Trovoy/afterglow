@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0C0C0E">
+<title>Afterglow 余场</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Afterglow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%20width%3D%22120%22%20height%3D%22120%22%3E%3Cdefs%3E%3Cmask%20id%3D%22agsm%22%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22120%22%20height%3D%22120%22%3E%3Cpath%20d%3D%22M11.57%2071.87L15.51%2079.76L31.86%2066.43L30.97%2065.57Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M13.68%2076.98L19.28%2083.76L32.83%2067.13L31.47%2066.09Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M16.92%2081.46L23.76%2086.94L34.33%2067.97L32.19%2066.69Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M21.00%2085.13L28.74%2089.34L36.45%2068.84L33.35%2067.46Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M25.70%2087.99L34.12%2091.02L39.20%2069.63L35.10%2068.32Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M30.85%2090.09L39.79%2092.02L42.51%2070.23L37.48%2069.17Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M36.36%2091.50L45.70%2092.40L46.32%2070.58L40.46%2069.90Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M42.13%2092.25L51.77%2092.18L50.52%2070.63L43.98%2070.40Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M48.12%2092.38L57.92%2091.40L55.01%2070.36L47.96%2070.64Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M54.23%2091.94L64.08%2090.08L59.69%2069.76L52.29%2070.56Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M60.39%2090.94L70.16%2088.24L64.46%2068.83L56.87%2070.16Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M66.53%2089.40L76.07%2085.93L69.22%2067.59L61.60%2069.43Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M72.55%2087.37L81.73%2083.18L73.88%2066.06L66.37%2068.37Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M78.37%2084.88L87.06%2080.04L78.32%2064.27L71.10%2067.01Z%22%20fill%3D%22rgb%28255%2C255%2C255%29%22%2F%3E%3Cpath%20d%3D%22M83.91%2081.97L91.98%2076.54L82.48%2062.25L75.68%2065.37Z%22%20fill%3D%22rgb%28251%2C251%2C251%29%22%2F%3E%3Cpath%20d%3D%22M89.08%2078.68L96.41%2072.73L86.27%2060.07L80.03%2063.49Z%22%20fill%3D%22rgb%28243%2C243%2C243%29%22%2F%3E%3Cpath%20d%3D%22M93.82%2075.05L100.28%2068.68L89.63%2057.76L84.05%2061.40Z%22%20fill%3D%22rgb%28235%2C235%2C235%29%22%2F%3E%3Cpath%20d%3D%22M98.03%2071.14L103.52%2064.42L92.48%2055.39L87.67%2059.16Z%22%20fill%3D%22rgb%28226%2C226%2C226%29%22%2F%3E%3Cpath%20d%3D%22M101.66%2066.99L106.07%2060.00L94.81%2053.02L90.83%2056.81Z%22%20fill%3D%22rgb%28218%2C218%2C218%29%22%2F%3E%3Cpath%20d%3D%22M104.63%2062.66L107.85%2055.49L96.59%2050.71L93.48%2054.44Z%22%20fill%3D%22rgb%28210%2C210%2C210%29%22%2F%3E%3Cpath%20d%3D%22M106.88%2058.20L108.80%2050.96L97.83%2048.50L95.58%2052.08Z%22%20fill%3D%22rgb%28202%2C202%2C202%29%22%2F%3E%3Cpath%20d%3D%22M108.34%2053.67L108.84%2046.51L98.58%2046.40L97.15%2049.81Z%22%20fill%3D%22rgb%28194%2C194%2C194%29%22%2F%3E%3Cpath%20d%3D%22M108.93%2049.16L107.93%2042.32L98.85%2044.35L98.19%2047.65Z%22%20fill%3D%22rgb%28185%2C185%2C185%29%22%2F%3E%3Cpath%20d%3D%22M108.59%2044.80L106.14%2038.57L98.59%2042.27L98.74%2045.57Z%22%20fill%3D%22rgb%28177%2C177%2C177%29%22%2F%3E%3Cpath%20d%3D%22M107.32%2040.76L103.58%2035.38L97.73%2040.15L98.81%2043.52Z%22%20fill%3D%22rgb%28169%2C169%2C169%29%22%2F%3E%3Cpath%20d%3D%22M105.20%2037.22L100.41%2032.80L96.16%2038.02L98.33%2041.43Z%22%20fill%3D%22rgb%28161%2C161%2C161%29%22%2F%3E%3Cpath%20d%3D%22M102.38%2034.28L96.75%2030.79L93.84%2036.01L97.19%2039.29Z%22%20fill%3D%22rgb%28153%2C153%2C153%29%22%2F%3E%3Cpath%20d%3D%22M99.00%2031.93L92.67%2029.29L90.81%2034.24L95.32%2037.20Z%22%20fill%3D%22rgb%28144%2C144%2C144%29%22%2F%3E%3Cpath%20d%3D%22M95.17%2030.13L88.22%2028.28L87.14%2032.80L92.71%2035.27Z%22%20fill%3D%22rgb%28134%2C134%2C134%29%22%2F%3E%3Cpath%20d%3D%22M90.93%2028.83L83.43%2027.71L82.93%2031.75L89.42%2033.62Z%22%20fill%3D%22rgb%28123%2C123%2C123%29%22%2F%3E%3Cpath%20d%3D%22M86.34%2028.00L78.38%2027.60L78.28%2031.14L85.52%2032.33Z%22%20fill%3D%22rgb%28111%2C111%2C111%29%22%2F%3E%3Cpath%20d%3D%22M81.44%2027.62L73.10%2027.92L73.28%2030.98L81.12%2031.45Z%22%20fill%3D%22rgb%2899%2C99%2C99%29%22%2F%3E%3Cpath%20d%3D%22M76.29%2027.68L67.69%2028.68L68.05%2031.27L76.31%2031.02Z%22%20fill%3D%22rgb%2888%2C88%2C88%29%22%2F%3E%3Cpath%20d%3D%22M70.95%2028.18L62.22%2029.86L62.68%2032.02L71.21%2031.04Z%22%20fill%3D%22rgb%2876%2C76%2C76%29%22%2F%3E%3Cpath%20d%3D%22M65.50%2029.10L56.77%2031.45L57.28%2033.19L65.91%2031.52Z%22%20fill%3D%22rgb%2864%2C64%2C64%29%22%2F%3E%3Cpath%20d%3D%22M60.03%2030.45L51.44%2033.42L51.94%2034.77L60.52%2032.44Z%22%20fill%3D%22rgb%2853%2C53%2C53%29%22%2F%3E%3Cpath%20d%3D%22M54.62%2032.19L46.31%2035.75L46.75%2036.72L55.13%2033.78Z%22%20fill%3D%22rgb%2841%2C41%2C41%29%22%2F%3E%3Cpath%20d%3D%22M49.36%2034.31L41.48%2038.41L41.81%2039.00L49.84%2035.51Z%22%20fill%3D%22rgb%2829%2C29%2C29%29%22%2F%3E%3Cpath%20d%3D%22M44.34%2036.78L37.04%2041.37L37.17%2041.56L44.74%2037.60Z%22%20fill%3D%22rgb%2818%2C18%2C18%29%22%2F%3E%3Cpath%20d%3D%22M39.65%2039.56L35.41%2042.64L35.41%2042.64L39.91%2039.99Z%22%20fill%3D%22rgb%286%2C6%2C6%29%22%2F%3E%3Ccircle%20cx%3D%2221.27%22%20cy%3D%2268.72%22%20r%3D%2210.20%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fmask%3E%3C%2Fdefs%3E%3Cg%20mask%3D%22url%28%23agsm%29%22%3E%3Cpath%20d%3D%22M11.57%2071.87L15.51%2079.76L31.86%2066.43L30.97%2065.57Z%22%20fill%3D%22%23FFE1B0%22%2F%3E%3Cpath%20d%3D%22M13.68%2076.98L19.28%2083.76L32.83%2067.13L31.47%2066.09Z%22%20fill%3D%22%23FFD69F%22%2F%3E%3Cpath%20d%3D%22M16.92%2081.46L23.76%2086.94L34.33%2067.97L32.19%2066.69Z%22%20fill%3D%22%23FFCA8E%22%2F%3E%3Cpath%20d%3D%22M21.00%2085.13L28.74%2089.34L36.45%2068.84L33.35%2067.46Z%22%20fill%3D%22%23FFBF7D%22%2F%3E%3Cpath%20d%3D%22M25.70%2087.99L34.12%2091.02L39.20%2069.63L35.10%2068.32Z%22%20fill%3D%22%23FFB36C%22%2F%3E%3Cpath%20d%3D%22M30.85%2090.09L39.79%2092.02L42.51%2070.23L37.48%2069.17Z%22%20fill%3D%22%23FFAC66%22%2F%3E%3Cpath%20d%3D%22M36.36%2091.50L45.70%2092.40L46.32%2070.58L40.46%2069.90Z%22%20fill%3D%22%23FFA664%22%2F%3E%3Cpath%20d%3D%22M42.13%2092.25L51.77%2092.18L50.52%2070.63L43.98%2070.40Z%22%20fill%3D%22%23FFA062%22%2F%3E%3Cpath%20d%3D%22M48.12%2092.38L57.92%2091.40L55.01%2070.36L47.96%2070.64Z%22%20fill%3D%22%23FF9A60%22%2F%3E%3Cpath%20d%3D%22M54.23%2091.94L64.08%2090.08L59.69%2069.76L52.29%2070.56Z%22%20fill%3D%22%23FF945E%22%2F%3E%3Cpath%20d%3D%22M60.39%2090.94L70.16%2088.24L64.46%2068.83L56.87%2070.16Z%22%20fill%3D%22%23FF8F5C%22%2F%3E%3Cpath%20d%3D%22M66.53%2089.40L76.07%2085.93L69.22%2067.59L61.60%2069.43Z%22%20fill%3D%22%23FF895A%22%2F%3E%3Cpath%20d%3D%22M72.55%2087.37L81.73%2083.18L73.88%2066.06L66.37%2068.37Z%22%20fill%3D%22%23FF8358%22%2F%3E%3Cpath%20d%3D%22M78.37%2084.88L87.06%2080.04L78.32%2064.27L71.10%2067.01Z%22%20fill%3D%22%23FF7D56%22%2F%3E%3Cpath%20d%3D%22M83.91%2081.97L91.98%2076.54L82.48%2062.25L75.68%2065.37Z%22%20fill%3D%22%23FE7856%22%2F%3E%3Cpath%20d%3D%22M89.08%2078.68L96.41%2072.73L86.27%2060.07L80.03%2063.49Z%22%20fill%3D%22%23FD7659%22%2F%3E%3Cpath%20d%3D%22M93.82%2075.05L100.28%2068.68L89.63%2057.76L84.05%2061.40Z%22%20fill%3D%22%23FB725C%22%2F%3E%3Cpath%20d%3D%22M98.03%2071.14L103.52%2064.42L92.48%2055.39L87.67%2059.16Z%22%20fill%3D%22%23F9705F%22%2F%3E%3Cpath%20d%3D%22M101.66%2066.99L106.07%2060.00L94.81%2053.02L90.83%2056.81Z%22%20fill%3D%22%23F86C62%22%2F%3E%3Cpath%20d%3D%22M104.63%2062.66L107.85%2055.49L96.59%2050.71L93.48%2054.44Z%22%20fill%3D%22%23F66A64%22%2F%3E%3Cpath%20d%3D%22M106.88%2058.20L108.80%2050.96L97.83%2048.50L95.58%2052.08Z%22%20fill%3D%22%23F46667%22%2F%3E%3Cpath%20d%3D%22M108.34%2053.67L108.84%2046.51L98.58%2046.40L97.15%2049.81Z%22%20fill%3D%22%23F3636A%22%2F%3E%3Cpath%20d%3D%22M108.93%2049.16L107.93%2042.32L98.85%2044.35L98.19%2047.65Z%22%20fill%3D%22%23F1606D%22%2F%3E%3Cpath%20d%3D%22M108.59%2044.80L106.14%2038.57L98.59%2042.27L98.74%2045.57Z%22%20fill%3D%22%23EF5E6F%22%2F%3E%3Cpath%20d%3D%22M107.32%2040.76L103.58%2035.38L97.73%2040.15L98.81%2043.52Z%22%20fill%3D%22%23EE5A72%22%2F%3E%3Cpath%20d%3D%22M105.20%2037.22L100.41%2032.80L96.16%2038.02L98.33%2041.43Z%22%20fill%3D%22%23EC5875%22%2F%3E%3Cpath%20d%3D%22M102.38%2034.28L96.75%2030.79L93.84%2036.01L97.19%2039.29Z%22%20fill%3D%22%23EA5478%22%2F%3E%3Cpath%20d%3D%22M99.00%2031.93L92.67%2029.29L90.81%2034.24L95.32%2037.20Z%22%20fill%3D%22%23E9527B%22%2F%3E%3Cpath%20d%3D%22M95.17%2030.13L88.22%2028.28L87.14%2032.80L92.71%2035.27Z%22%20fill%3D%22%23E64F7C%22%2F%3E%3Cpath%20d%3D%22M90.93%2028.83L83.43%2027.71L82.93%2031.75L89.42%2033.62Z%22%20fill%3D%22%23E34E7C%22%2F%3E%3Cpath%20d%3D%22M86.34%2028.00L78.38%2027.60L78.28%2031.14L85.52%2032.33Z%22%20fill%3D%22%23E04D7C%22%2F%3E%3Cpath%20d%3D%22M81.44%2027.62L73.10%2027.92L73.28%2030.98L81.12%2031.45Z%22%20fill%3D%22%23DD4C7D%22%2F%3E%3Cpath%20d%3D%22M76.29%2027.68L67.69%2028.68L68.05%2031.27L76.31%2031.02Z%22%20fill%3D%22%23DA4B7D%22%2F%3E%3Cpath%20d%3D%22M70.95%2028.18L62.22%2029.86L62.68%2032.02L71.21%2031.04Z%22%20fill%3D%22%23D74A7D%22%2F%3E%3Cpath%20d%3D%22M65.50%2029.10L56.77%2031.45L57.28%2033.19L65.91%2031.52Z%22%20fill%3D%22%23D3497D%22%2F%3E%3Cpath%20d%3D%22M60.03%2030.45L51.44%2033.42L51.94%2034.77L60.52%2032.44Z%22%20fill%3D%22%23D0487D%22%2F%3E%3Cpath%20d%3D%22M54.62%2032.19L46.31%2035.75L46.75%2036.72L55.13%2033.78Z%22%20fill%3D%22%23CD477D%22%2F%3E%3Cpath%20d%3D%22M49.36%2034.31L41.48%2038.41L41.81%2039.00L49.84%2035.51Z%22%20fill%3D%22%23CA467E%22%2F%3E%3Cpath%20d%3D%22M44.34%2036.78L37.04%2041.37L37.17%2041.56L44.74%2037.60Z%22%20fill%3D%22%23C7457E%22%2F%3E%3Cpath%20d%3D%22M39.65%2039.56L35.41%2042.64L35.41%2042.64L39.91%2039.99Z%22%20fill%3D%22%23C4447E%22%2F%3E%3Ccircle%20cx%3D%2221.27%22%20cy%3D%2268.72%22%20r%3D%2210.20%22%20fill%3D%22%23FFE7B8%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2221.27%22%20cy%3D%2268.72%22%20r%3D%229.79%22%20fill%3D%22%23FFF6E2%22%2F%3E%3C%2Fsvg%3E">
+<style>
+:root{--bg:#0C0C0E;--card:#17171A;--card2:#212125;--line:#2A2A2F;--fg:#EDEBE7;--mut:#8D8A85;--a1:#FF8A4C;--a2:#FF8A4C;--grad:#FF8A4C;--ink:#121214}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+main{max-width:520px;margin:0 auto;padding:16px 16px 40px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(40px,env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:10px;margin:4px 0 16px}
+.logo{width:40px;height:40px;border-radius:12px;background:#1C1C20;border:1px solid #2A2A2F;display:grid;place-items:center}.wm{display:flex;align-items:center;gap:8px;font-weight:400;letter-spacing:-.5px}.wm i{width:1px;height:13px;background:#3A3F4C}.wm span{font-family:"Songti SC","Noto Serif SC",serif;font-weight:500;font-size:14px;letter-spacing:3px;color:#D8D3CB}
+header b{font-size:18px}header small{display:block;color:var(--mut);font-size:12px}
+.chip{margin-left:auto;font-size:12px;padding:4px 10px;border-radius:20px;background:var(--card2);color:var(--mut);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#555}.dot.on{background:#2ecc71;box-shadow:0 0 8px #2ecc71}.dot.tx{background:var(--a2);box-shadow:0 0 8px var(--a2);animation:p 1s infinite}
+@keyframes p{50%{opacity:.35}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+.card h2{font-size:14px;color:var(--mut);margin:0 0 12px;font-weight:600}
+.hero{background:var(--card);border:1px solid var(--line);position:relative;overflow:hidden}
+.hero .mode{font-size:24px;font-weight:700}
+.hero .meta{color:var(--mut);font-size:13px;margin:2px 0 14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.stat{background:rgba(255,255,255,.06);border-radius:12px;padding:8px 10px}.stat small{display:block;color:var(--mut);font-size:11px}.stat b{display:flex;align-items:center;gap:6px;font-size:17px}
+.stat b{white-space:nowrap}.stat b em{font-style:normal;font-size:11px;color:var(--mut);font-weight:400;margin-left:2px}
+.beat{width:10px;height:10px;border-radius:50%;background:#555;flex:none}
+.beat.go{background:var(--a1);animation:beat var(--p,1s) infinite}
+@keyframes beat{0%{transform:scale(1.5);box-shadow:none}35%{transform:scale(1);box-shadow:none}}
+.vol{height:8px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden;margin:7px 0 4px}.vol i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s}
+button{font:inherit;color:var(--fg);border:1px solid var(--line);background:var(--card2);border-radius:14px;padding:12px;cursor:pointer}
+button{transition:transform .35s cubic-bezier(.16,1,.3,1),background-color .25s,border-color .25s,color .25s}button:active{transform:scale(.97);transition-duration:.08s}
+.btns{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.primary{background:var(--fg);border:0;font-weight:700;color:var(--ink)}
+.danger{background:rgba(255,92,108,.14);border-color:rgba(255,92,108,.35);color:#ffa1ab}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.seg button{padding:9px 0;border-radius:20px;font-size:13px;color:var(--mut)}
+.seg button.on{background:var(--fg);color:var(--ink);border:0;font-weight:600}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sw div{aspect-ratio:1.4;border-radius:16px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-size:13px;font-weight:700;cursor:pointer;position:relative;transition:transform .15s,outline-color .15s;outline:3px solid transparent;outline-offset:3px}
+.hx{position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:.01;overflow:hidden}
+.hosttap{position:relative;touch-action:pan-y}.tapwrap{display:block}.tapwrap>button{width:100%;height:100%}.line .tapwrap{flex:none}.tapsw{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:.011;cursor:pointer;z-index:2;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.sw div:active{transform:scale(.94)}.sw div.pop{animation:pop .28s}@keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.07)}100%{transform:scale(1.04)}}.sw div.sel{outline-color:#fff;transform:scale(1.04)}
+.sw div.sel:before{content:"✓";position:absolute;top:6px;right:8px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;font-size:13px;display:grid;place-items:center}
+.cdot{display:inline-block;width:18px;height:18px;border-radius:50%;vertical-align:middle;margin-left:8px;transition:.2s}
+.sl{margin:10px 0 16px}.def{font-style:normal;font-size:11px;color:#6E6B67;margin-left:6px}
+.rst{font-size:12px;color:var(--a1);margin-right:8px;cursor:pointer;visibility:hidden;display:inline-block;padding:2px 4px}
+.rw{position:relative}.rw input{position:relative;background:transparent}.rw:before{content:"";position:absolute;left:0;right:0;top:10px;height:6px;border-radius:4px;background:#2A2A2F}.tick{position:absolute;top:13px;width:2px;height:8px;background:#6E6B67;border-radius:1px;pointer-events:none}.sl .t{display:flex;justify-content:space-between;color:var(--mut);font-size:13px;margin-bottom:6px}.sl .t b{color:var(--fg);font-weight:600}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:4px;background:#2A2A2F;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:5px solid var(--a1)}
+.line{display:flex;align-items:center;gap:12px;padding:6px 0}.line span{flex:1}
+.sw2{position:relative;width:48px;height:28px;flex:none}.sw2 input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:.011;z-index:2;cursor:pointer}.sw2 i{position:absolute;inset:0;border-radius:20px;background:#2A2A2F;transition:background-color .3s cubic-bezier(.215,.61,.355,1)}
+.sw2 i:after{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;border-radius:50%;background:#fff;transition:left .4s cubic-bezier(.16,1,.3,1)}
+.sw2 input:checked+i{background:var(--a1)}.sw2 input:checked+i:after{left:23px}
+input[type=text],input[type=password]{width:100%;font:inherit;color:var(--fg);background:#0F0F11;border:1px solid var(--line);border-radius:12px;padding:11px}
+details summary{color:var(--mut);cursor:pointer;font-size:14px;list-style:none}details summary:after{content:" ›"}
+.mut{color:var(--mut);font-size:13px}
+.bres{display:flex;gap:12px;align-items:center;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5}.bres b{font-size:17px;display:block}
+.batt{display:inline-flex;gap:3px;padding:4px;border:2px solid currentColor;border-radius:7px;position:relative;margin:6px}.batt:after{content:"";position:absolute;right:-6px;top:30%;width:4px;height:40%;background:currentColor;border-radius:0 2px 2px 0}
+.batt i{width:12px;height:22px;border-radius:2px;background:currentColor;opacity:.18}.batt i.on{opacity:1}
+.ov{position:fixed;inset:0;background:rgba(5,6,10,.82);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.ov.show{display:flex}
+.ovc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;width:100%;max-width:400px;text-align:center}
+.cna{display:none;background:rgba(79,168,255,.12);border:1px solid rgba(79,168,255,.4);color:#bcd9ff;border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.6;margin-bottom:14px}
+.slist{display:grid;gap:8px;margin-bottom:12px}.sitem{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:14px;background:var(--card2);border:1px solid var(--line);cursor:pointer}
+.sitem.on{border-color:var(--a1);background:rgba(255,138,76,.07)}.sitem .si{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.07);display:grid;place-items:center;flex:none}.sitem b{display:block;font-size:15px}.sitem small{color:var(--mut);font-size:12px}
+.prog{display:flex;justify-content:space-between;color:var(--mut);font-size:12px;margin-top:-2px}
+.steps{display:flex;gap:6px;justify-content:center;margin-bottom:16px}.steps i{width:22px;height:4px;border-radius:2px;background:var(--line)}.steps i.on{background:var(--a1)}
+.ovc h3{font-size:21px;margin:6px 0 8px}.ovc .mut{line-height:1.7}.ovc ul{text-align:left;color:var(--mut);font-size:13px;line-height:1.8;padding-left:20px;margin:12px 0 0}
+.big{font-size:42px;font-weight:800;margin:6px 0;font-variant-numeric:tabular-nums}
+.pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}.pills span{font-size:11px;padding:3px 8px;border-radius:12px;background:var(--card2);color:var(--mut)}.pills span.y{background:rgba(46,204,113,.18);color:#7ff0ae}.pills span.h{background:rgba(245,185,66,.18);color:#f5b942}.pills span.c{outline:1px solid var(--a1);color:var(--fg)}
+.offbar{position:sticky;top:0;z-index:15;display:none;gap:12px;align-items:flex-start;margin:calc(-1*max(16px,env(safe-area-inset-top))) -16px 14px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:#3a1a22;border-bottom:1px solid rgba(255,92,108,.5);color:#ffd0d5;font-size:13px;line-height:1.6}
+.offbar b{display:block;font-size:15px;color:#fff}.offbar svg{flex:none;margin-top:3px}
+body.offline #offbar,body.stale #updbar{display:flex}.updbar{background:#14263a;border-bottom-color:rgba(79,168,255,.5);color:#cfe6ff;align-items:center}body.offline main>.card,body.offline main>header{opacity:.45;filter:saturate(.4);transition:opacity .2s}
+.faq{border-top:1px solid var(--line);padding:12px 0}.faq:first-of-type{border-top:0;padding-top:2px}.faq summary{color:var(--fg);font-size:15px}.faq .mut{margin-top:8px;line-height:1.7}
+.fold>summary{list-style:none;display:flex;align-items:center;cursor:pointer;margin:-4px 0;padding:4px 0;-webkit-user-select:none;user-select:none}.fold>summary::-webkit-details-marker{display:none}.fold>summary h2{margin:0;flex:1;color:var(--fg);font-size:15px;font-weight:600}.fold>summary:after{content:"";width:8px;height:8px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(45deg);margin:0 4px 4px 0;transition:transform .45s cubic-bezier(.16,1,.3,1),margin .45s cubic-bezier(.16,1,.3,1)}.fold[open]>summary{margin-bottom:12px}.fold[open]>summary:after{transform:rotate(-135deg);margin-bottom:-4px}.fold.closing>summary:after{transform:rotate(45deg);margin-bottom:4px}
+.devinfo{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13px}
+.devinfo .dh{grid-column:1/-1;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:baseline}.devinfo .dh span{font-weight:400;font-size:12px;color:var(--mut)}
+.devinfo .k{color:var(--mut)}.devinfo .v{text-align:right;font-variant-numeric:tabular-nums;word-break:break-all}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1F1F23;border:1px solid #2E2E33;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:opacity .35s cubic-bezier(.215,.61,.355,1),transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none;max-width:90%}
+#toast{transform:translate(-50%,14px)}#toast.show{opacity:1;transform:translate(-50%,0)}
+</style></head><body><main>
+<div class="offbar" id="offbar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff8a96" stroke-width="2.2" stroke-linecap="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.3a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/><path d="M3 3l18 18"/></svg>
+<div><b>未连接到控制器</b><span id="offtxt">手机可能已自动切换到其他 Wi-Fi，当前操作不会生效。请在“设置 → Wi-Fi”中重新连接控制器热点，连接后页面会自动恢复。</span></div></div>
+<div class="offbar updbar" id="updbar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ed0ff" stroke-width="2.2" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></svg>
+<div style="flex:1"><b>页面需要刷新</b><span id="updtxt">控制器固件已更新，请刷新页面以使用新版本。</span></div><button onclick="location.reload()" style="flex:none;padding:8px 14px">刷新</button></div>
+<header><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="30" height="30" aria-hidden="true"><defs><mask id="agsm" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M11.57 71.87L15.51 79.76L31.86 66.43L30.97 65.57Z" fill="rgb(255,255,255)"/><path d="M13.68 76.98L19.28 83.76L32.83 67.13L31.47 66.09Z" fill="rgb(255,255,255)"/><path d="M16.92 81.46L23.76 86.94L34.33 67.97L32.19 66.69Z" fill="rgb(255,255,255)"/><path d="M21.00 85.13L28.74 89.34L36.45 68.84L33.35 67.46Z" fill="rgb(255,255,255)"/><path d="M25.70 87.99L34.12 91.02L39.20 69.63L35.10 68.32Z" fill="rgb(255,255,255)"/><path d="M30.85 90.09L39.79 92.02L42.51 70.23L37.48 69.17Z" fill="rgb(255,255,255)"/><path d="M36.36 91.50L45.70 92.40L46.32 70.58L40.46 69.90Z" fill="rgb(255,255,255)"/><path d="M42.13 92.25L51.77 92.18L50.52 70.63L43.98 70.40Z" fill="rgb(255,255,255)"/><path d="M48.12 92.38L57.92 91.40L55.01 70.36L47.96 70.64Z" fill="rgb(255,255,255)"/><path d="M54.23 91.94L64.08 90.08L59.69 69.76L52.29 70.56Z" fill="rgb(255,255,255)"/><path d="M60.39 90.94L70.16 88.24L64.46 68.83L56.87 70.16Z" fill="rgb(255,255,255)"/><path d="M66.53 89.40L76.07 85.93L69.22 67.59L61.60 69.43Z" fill="rgb(255,255,255)"/><path d="M72.55 87.37L81.73 83.18L73.88 66.06L66.37 68.37Z" fill="rgb(255,255,255)"/><path d="M78.37 84.88L87.06 80.04L78.32 64.27L71.10 67.01Z" fill="rgb(255,255,255)"/><path d="M83.91 81.97L91.98 76.54L82.48 62.25L75.68 65.37Z" fill="rgb(251,251,251)"/><path d="M89.08 78.68L96.41 72.73L86.27 60.07L80.03 63.49Z" fill="rgb(243,243,243)"/><path d="M93.82 75.05L100.28 68.68L89.63 57.76L84.05 61.40Z" fill="rgb(235,235,235)"/><path d="M98.03 71.14L103.52 64.42L92.48 55.39L87.67 59.16Z" fill="rgb(226,226,226)"/><path d="M101.66 66.99L106.07 60.00L94.81 53.02L90.83 56.81Z" fill="rgb(218,218,218)"/><path d="M104.63 62.66L107.85 55.49L96.59 50.71L93.48 54.44Z" fill="rgb(210,210,210)"/><path d="M106.88 58.20L108.80 50.96L97.83 48.50L95.58 52.08Z" fill="rgb(202,202,202)"/><path d="M108.34 53.67L108.84 46.51L98.58 46.40L97.15 49.81Z" fill="rgb(194,194,194)"/><path d="M108.93 49.16L107.93 42.32L98.85 44.35L98.19 47.65Z" fill="rgb(185,185,185)"/><path d="M108.59 44.80L106.14 38.57L98.59 42.27L98.74 45.57Z" fill="rgb(177,177,177)"/><path d="M107.32 40.76L103.58 35.38L97.73 40.15L98.81 43.52Z" fill="rgb(169,169,169)"/><path d="M105.20 37.22L100.41 32.80L96.16 38.02L98.33 41.43Z" fill="rgb(161,161,161)"/><path d="M102.38 34.28L96.75 30.79L93.84 36.01L97.19 39.29Z" fill="rgb(153,153,153)"/><path d="M99.00 31.93L92.67 29.29L90.81 34.24L95.32 37.20Z" fill="rgb(144,144,144)"/><path d="M95.17 30.13L88.22 28.28L87.14 32.80L92.71 35.27Z" fill="rgb(134,134,134)"/><path d="M90.93 28.83L83.43 27.71L82.93 31.75L89.42 33.62Z" fill="rgb(123,123,123)"/><path d="M86.34 28.00L78.38 27.60L78.28 31.14L85.52 32.33Z" fill="rgb(111,111,111)"/><path d="M81.44 27.62L73.10 27.92L73.28 30.98L81.12 31.45Z" fill="rgb(99,99,99)"/><path d="M76.29 27.68L67.69 28.68L68.05 31.27L76.31 31.02Z" fill="rgb(88,88,88)"/><path d="M70.95 28.18L62.22 29.86L62.68 32.02L71.21 31.04Z" fill="rgb(76,76,76)"/><path d="M65.50 29.10L56.77 31.45L57.28 33.19L65.91 31.52Z" fill="rgb(64,64,64)"/><path d="M60.03 30.45L51.44 33.42L51.94 34.77L60.52 32.44Z" fill="rgb(53,53,53)"/><path d="M54.62 32.19L46.31 35.75L46.75 36.72L55.13 33.78Z" fill="rgb(41,41,41)"/><path d="M49.36 34.31L41.48 38.41L41.81 39.00L49.84 35.51Z" fill="rgb(29,29,29)"/><path d="M44.34 36.78L37.04 41.37L37.17 41.56L44.74 37.60Z" fill="rgb(18,18,18)"/><path d="M39.65 39.56L35.41 42.64L35.41 42.64L39.91 39.99Z" fill="rgb(6,6,6)"/><circle cx="21.27" cy="68.72" r="10.20" fill="#fff"/></mask></defs><g mask="url(#agsm)"><path d="M11.57 71.87L15.51 79.76L31.86 66.43L30.97 65.57Z" fill="#FFE1B0"/><path d="M13.68 76.98L19.28 83.76L32.83 67.13L31.47 66.09Z" fill="#FFD69F"/><path d="M16.92 81.46L23.76 86.94L34.33 67.97L32.19 66.69Z" fill="#FFCA8E"/><path d="M21.00 85.13L28.74 89.34L36.45 68.84L33.35 67.46Z" fill="#FFBF7D"/><path d="M25.70 87.99L34.12 91.02L39.20 69.63L35.10 68.32Z" fill="#FFB36C"/><path d="M30.85 90.09L39.79 92.02L42.51 70.23L37.48 69.17Z" fill="#FFAC66"/><path d="M36.36 91.50L45.70 92.40L46.32 70.58L40.46 69.90Z" fill="#FFA664"/><path d="M42.13 92.25L51.77 92.18L50.52 70.63L43.98 70.40Z" fill="#FFA062"/><path d="M48.12 92.38L57.92 91.40L55.01 70.36L47.96 70.64Z" fill="#FF9A60"/><path d="M54.23 91.94L64.08 90.08L59.69 69.76L52.29 70.56Z" fill="#FF945E"/><path d="M60.39 90.94L70.16 88.24L64.46 68.83L56.87 70.16Z" fill="#FF8F5C"/><path d="M66.53 89.40L76.07 85.93L69.22 67.59L61.60 69.43Z" fill="#FF895A"/><path d="M72.55 87.37L81.73 83.18L73.88 66.06L66.37 68.37Z" fill="#FF8358"/><path d="M78.37 84.88L87.06 80.04L78.32 64.27L71.10 67.01Z" fill="#FF7D56"/><path d="M83.91 81.97L91.98 76.54L82.48 62.25L75.68 65.37Z" fill="#FE7856"/><path d="M89.08 78.68L96.41 72.73L86.27 60.07L80.03 63.49Z" fill="#FD7659"/><path d="M93.82 75.05L100.28 68.68L89.63 57.76L84.05 61.40Z" fill="#FB725C"/><path d="M98.03 71.14L103.52 64.42L92.48 55.39L87.67 59.16Z" fill="#F9705F"/><path d="M101.66 66.99L106.07 60.00L94.81 53.02L90.83 56.81Z" fill="#F86C62"/><path d="M104.63 62.66L107.85 55.49L96.59 50.71L93.48 54.44Z" fill="#F66A64"/><path d="M106.88 58.20L108.80 50.96L97.83 48.50L95.58 52.08Z" fill="#F46667"/><path d="M108.34 53.67L108.84 46.51L98.58 46.40L97.15 49.81Z" fill="#F3636A"/><path d="M108.93 49.16L107.93 42.32L98.85 44.35L98.19 47.65Z" fill="#F1606D"/><path d="M108.59 44.80L106.14 38.57L98.59 42.27L98.74 45.57Z" fill="#EF5E6F"/><path d="M107.32 40.76L103.58 35.38L97.73 40.15L98.81 43.52Z" fill="#EE5A72"/><path d="M105.20 37.22L100.41 32.80L96.16 38.02L98.33 41.43Z" fill="#EC5875"/><path d="M102.38 34.28L96.75 30.79L93.84 36.01L97.19 39.29Z" fill="#EA5478"/><path d="M99.00 31.93L92.67 29.29L90.81 34.24L95.32 37.20Z" fill="#E9527B"/><path d="M95.17 30.13L88.22 28.28L87.14 32.80L92.71 35.27Z" fill="#E64F7C"/><path d="M90.93 28.83L83.43 27.71L82.93 31.75L89.42 33.62Z" fill="#E34E7C"/><path d="M86.34 28.00L78.38 27.60L78.28 31.14L85.52 32.33Z" fill="#E04D7C"/><path d="M81.44 27.62L73.10 27.92L73.28 30.98L81.12 31.45Z" fill="#DD4C7D"/><path d="M76.29 27.68L67.69 28.68L68.05 31.27L76.31 31.02Z" fill="#DA4B7D"/><path d="M70.95 28.18L62.22 29.86L62.68 32.02L71.21 31.04Z" fill="#D74A7D"/><path d="M65.50 29.10L56.77 31.45L57.28 33.19L65.91 31.52Z" fill="#D3497D"/><path d="M60.03 30.45L51.44 33.42L51.94 34.77L60.52 32.44Z" fill="#D0487D"/><path d="M54.62 32.19L46.31 35.75L46.75 36.72L55.13 33.78Z" fill="#CD477D"/><path d="M49.36 34.31L41.48 38.41L41.81 39.00L49.84 35.51Z" fill="#CA467E"/><path d="M44.34 36.78L37.04 41.37L37.17 41.56L44.74 37.60Z" fill="#C7457E"/><path d="M39.65 39.56L35.41 42.64L35.41 42.64L39.91 39.99Z" fill="#C4447E"/><circle cx="21.27" cy="68.72" r="10.20" fill="#FFE7B8"/></g><circle cx="21.27" cy="68.72" r="9.79" fill="#FFF6E2"/></svg></div>
+<div><b class="wm">afterglow<i></i><span>余场</span></b><small>手环灯光控制器</small></div><div class="chip"><span class="dot" id="dot"></span><span id="conn">连接中</span></div></header>
+
+<div class="cna" id="cna">当前为系统自动弹出的简化窗口，可直接使用。如需完整体验（如触感反馈），请点击下方按钮，再点击右上角“完成”，然后在 Safari 中打开 <b>http://afterglow.local</b>（或 192.168.4.1）。<br><span style="opacity:.8">若右上角显示“✕”，关闭时请选择“不使用互联网”（Use Without Internet）以保持连接。</span><button style="width:100%;margin-top:10px" onclick="location.href='http://captive.apple.com/hotspot-detect.html'">保持连接并转到 Safari</button></div>
+<div class="card hero">
+<div class="mode" id="mode">—</div><div class="meta" id="meta">正在读取控制器状态…</div>
+<div class="stats">
+<div class="stat"><small>节奏</small><b><span class="beat" id="beatdot"></span><span id="bpm">—</span></b><small id="tempo">未检测到节奏</small></div>
+<div class="stat"><small>声音</small><div class="vol"><i id="vol"></i></div><small id="volt">安静</small></div>
+<div class="stat"><small>麦克风</small><b id="mic">—</b></div></div>
+<div class="btns"><button class="primary" onclick="cmd('mic').then(j=>j.ok&&toast('开始跟随音乐'))">跟随音乐</button><button class="danger" onclick="cmd('off')">熄灭</button></div>
+</div>
+
+<div id="bat" class="ov"><div class="ovc"><div id="batrun"><div class="mut" id="batphase">电池检测</div><div id="batstep" style="font-size:22px;font-weight:700;margin:8px 0">准备…</div>
+<div class="mut" id="battip">请将手环放在控制器旁边，观察约 5 秒后作出选择。<br>如果偶尔出现闪烁，也请选择<b>“出现闪烁”</b>。</div>
+<div class="vol" style="margin:16px 0"><i id="batbar"></i></div>
+<div class="btns" style="grid-template-columns:1fr 1fr"><button onclick="batAnswer(false)">稳定</button><button class="primary" onclick="batAnswer(true)">出现闪烁</button></div>
+<button style="width:100%;margin-top:10px" onclick="batCancel()">取消</button></div>
+<div id="batdone" style="display:none"><div id="batico"></div><div id="battitle" style="font-size:24px;font-weight:800;margin:10px 0 6px"></div>
+<div class="mut" id="batdesc" style="line-height:1.7"></div><button class="primary" style="width:100%;margin-top:18px" onclick="hideOv('bat')">确定</button></div></div></div>
+<div id="ad" class="ov"><div class="ovc"><div class="mut" id="adphase">第一轮</div><div class="big" id="adfreq" style="font-size:30px">—</div>
+<div class="mut" id="adtip">手环竖放在控制器旁约 30 厘米处，观察是否跟随红蓝交替闪烁。</div>
+<div class="vol" style="margin:14px 0 4px"><i id="adbar"></i></div><div class="prog"><span id="adidx"></span><span id="adleft"></span></div>
+<div class="btns" style="grid-template-columns:1fr 1fr 1fr;margin-top:14px"><button class="primary" onclick="adAnswer(1)">跟随闪烁</button><button onclick="adAnswer(.5)">偶尔闪烁</button><button onclick="adAnswer(0)">无反应</button></div>
+<div class="pills" id="adpills"></div><button style="width:100%;margin-top:14px" onclick="adStop()">停止并恢复原频率</button></div></div>
+
+<details class="card fold" data-fold="effect" open><summary><h2>效果</h2></summary><div class="seg" id="seg"></div></details>
+
+<details class="card fold" data-fold="color" open><summary><h2>固定颜色</h2></summary><div class="sw" id="sw"></div></details>
+
+<details class="card fold" data-fold="show" id="showcard"><summary><h2>演唱会复刻</h2></summary>
+<div class="slist" id="slist"><div class="mut">正在读取控制器中的节目…</div></div>
+<div class="line" style="padding:0 0 8px"><button type="button" onclick="$('aufile').click()" style="flex:none">选择音乐</button><span class="mut" id="auname">未选择音乐（仅播放灯光）</span></div>
+<input type="file" id="aufile" style="display:none" onchange="pickAudio(this)"><audio id="au" preload="auto" playsinline></audio>
+<div class="vol"><i id="sprog"></i></div><div class="prog"><span id="spos">0:00</span><span id="sdur">0:00</span></div>
+<div class="btns" style="margin-top:12px"><button class="primary" onclick="showPlay()">播放</button><button onclick="showStop()">停止</button></div>
+<div class="mut" style="margin-top:10px">可选择这段演出对应的音乐，灯光会与音乐同步；音乐仅在本机播放，不会上传。节目需先通过电脑端写入控制器。</div></details>
+
+<details class="card fold" data-fold="adjust"><summary><h2>调节</h2></summary>
+<div id="sliders"></div>
+<div class="line"><span>开机自动跟随音乐</span><label class="sw2"><input type="checkbox" switch id="auto"><i></i></label></div>
+<div class="btns" style="grid-template-columns:1fr 1fr;margin-top:8px"><button onclick="resetAll()">全部恢复默认</button><button onclick="cmd('save').then(j=>j.ok&&toast('设置已保存'))">保存设置</button></div>
+</details>
+
+<details class="card fold" data-fold="wake"><summary><h2>手环唤醒</h2></summary>
+<div class="line"><span>保持手环唤醒<div class="mut">控制器开机期间持续唤醒手环，操作即时生效（推荐开启）</div></span><label class="sw2"><input type="checkbox" switch id="ka"><i></i></label></div>
+<div class="line"><span>信号中断后自动熄灭<div class="mut">控制器断电或手环离开信号范围约 30–40 秒后，手环自动熄灭以节省电量（推荐开启）</div></span><label class="sw2"><input type="checkbox" switch id="aoff"><i></i></label></div>
+<div class="mut" style="margin:10px 0">手环更换电池或控制器刚开机时，约需 30 秒完成唤醒，唤醒期间请将手环靠近控制器。</div>
+<button style="width:100%" onclick="cmd('wake 30').then(j=>j.ok&&toast('正在唤醒手环（约 30 秒）'))">立即唤醒 30 秒</button></details>
+
+<details class="card fold" data-fold="battery"><summary><h2>电池检测</h2></summary><div class="mut" style="margin-bottom:10px">如果手环在某些颜色下出现闪烁，通常是电池电量不足。检测完成后，控制器会自动将亮度调整到不会闪烁的水平。</div>
+<button style="width:100%" onclick="batStart()">开始电池检测</button><div class="mut" id="batres" style="margin-top:10px"></div></details>
+
+<details class="card fold" data-fold="adapt"><summary><h2>手环频率适配</h2></summary><div class="mut" style="margin-bottom:10px">控制器默认使用这类手环的标准频率。个别手环的工作频率可能略有偏差，表现为反应不灵敏或无法点亮，此时可运行适配。向导会在多个频率上发送红蓝交替闪烁信号，请根据手环是否跟随闪烁作出选择，完成后自动保存最佳频率。全程约 5–10 分钟。</div>
+<div class="line"><span>当前频率</span><b id="curfreq">—</b></div>
+<div class="btns" style="grid-template-columns:2fr 1fr;margin-top:6px"><button class="primary" onclick="adStart()">开始适配</button><button onclick="adDefault()">恢复默认</button></div><div id="adres" style="margin-top:10px"></div></details>
+
+<details class="card fold" data-fold="help"><summary><h2>帮助</h2></summary><details class="faq"><summary>手环不亮怎么办</summary><div class="mut">先点“手环唤醒”里的“立即唤醒 30 秒”，期间把手环<b>竖放</b>在控制器旁 30 厘米以内。仍然不亮时，检查电池是否装反或电量不足，可更换两颗 CR2032 纽扣电池。如果还是不亮，可以运行“手环频率适配”自动寻找合适的频率。</div></details><details class="faq"><summary>手环能离控制器多远</summary><div class="mut">换上新电池后，手环竖放时约 1.3 米内可稳定跟随，平放约 75 厘米。手环朝向影响很大，竖放（灯面朝向侧面）效果最好。演唱会带回的旧电池会明显缩短距离，建议更换新电池。</div></details><details class="faq"><summary>手环闪烁或亮度不稳定</summary><div class="mut">通常是电池电量不足，在红、橙、黄、粉等较亮的颜色下更明显。请运行“电池检测”，控制器会自动设置不会闪烁的亮度上限；或更换新电池。</div></details><details class="faq"><summary>“熄灭”后手环还耗电吗</summary><div class="mut">“熄灭”只是关闭灯光，手环仍在接收信号，耗电比亮灯时少得多。控制器关闭后，手环会自动进入休眠。长期不用时，建议取出电池，或在电池与触点之间垫一张小纸片。</div></details><details class="faq"><summary>页面打不开或提示“未连接到控制器”</summary><div class="mut">请确认手机已连接控制器的 Afterglow 热点。由于热点没有互联网，手机有时会自动切换回其他 Wi-Fi，请在“设置 → Wi-Fi”中重新连接。在 Safari 中输入 <b>http://afterglow.local</b> 或 <b>192.168.4.1</b> 即可打开本页面。</div></details><details class="faq"><summary>怎样更快打开控制页面</summary><div class="mut">在 Safari 中打开本页面后，点击底部的“分享”按钮，选择“添加到主屏幕”。以后连上控制器热点，直接点主屏幕上的 Afterglow 图标即可打开，无需再输入网址。</div></details><details class="faq"><summary>演唱会复刻怎么使用</summary><div class="mut">复刻节目需要先在电脑端 Afterglow Studio 中根据你自己录制的视频生成，再写入控制器，最多保存 4 个。播放时可选择手机中对应的音乐，灯光会与音乐同步。</div></details><details class="faq"><summary>可以用数据线连接手机控制吗</summary><div class="mut">不支持。iPhone 的 Safari 不允许网页访问 USB 设备。没有手机时，可以短按控制器上的按键，依次切换：跟随音乐、红、绿、蓝、白、熄灭；长按 3 秒可以开启或关闭热点。</div></details><details class="faq"><summary>隐私说明</summary><div class="mut">控制器不连接互联网，不需要注册账号，也不收集任何使用数据。麦克风只用于实时计算音量和节拍，不录音、不保存、不上传。选择的音乐只在本机播放，不会上传到控制器或其他地方。</div></details></details>
+
+<details class="card fold" data-fold="advanced"><summary><h2>高级设置</h2></summary>
+<div style="margin-top:12px" class="mut">修改热点密码（8–20 位，重启后生效）</div>
+<div class="line"><input type="password" id="pw" style="flex:1;width:auto"><button onclick="setpw()" style="flex:none;white-space:nowrap">修改</button></div>
+<div style="margin-top:12px" class="mut">固件更新：选择下载好的固件包（afterglow-fw-x.x.x.zip，不用解压）</div>
+<label class="line" style="margin:8px 0"><button type="button" onclick="$('fw').click()" style="flex:none">选择固件包</button><span class="mut" id="fwname">未选择</span></label>
+<input type="file" id="fw" accept=".zip,.bin,application/zip,application/octet-stream" style="display:none" onchange="fwPick(this.files[0])">
+<div class="mut" id="fwinfo" style="display:none;margin:-2px 0 8px"></div>
+<div class="vol" id="fwprog" style="display:none;margin:4px 0 10px"><i id="fwbar"></i></div>
+<button class="primary" style="width:100%" id="fwbtn" onclick="upload()">上传并更新</button>
+<button style="width:100%;margin-top:12px" onclick="obOpen()">重新查看使用引导</button>
+<button class="danger" style="width:100%;margin-top:10px" id="facbtn" onclick="factory(this)">恢复出厂设置</button>
+<div class="mut" style="margin-top:6px">清除全部设置（含频率、亮度上限、热点密码）和控制器中保存的节目，然后重启。</div>
+<div class="devinfo" id="devinfo"><div class="dh">设备信息<span>出现问题时，可截图发给卖家</span></div></div><div class="mut" id="ver" style="display:none"></div></details>
+<div id="ob" class="ov"><div class="ovc"><div class="steps" id="obsteps"><i></i><i></i><i></i><i></i><i></i></div><div id="obbody"></div></div></div>
+</main><div id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+let tt;function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2600)}
+// Every request has a 3 s timeout: when the phone leaves the hotspot (iOS often switches to a Wi-Fi with
+// internet), fetches hang or fail; the page then shows a banner and dims the controls until it can reach the controller again.
+let online=null,ssid='',pageVer='',lastUp=0,hello={};
+async function cmd(c){const ac=new AbortController();const to=setTimeout(()=>ac.abort(),3000);
+try{const r=await fetch('/api?c='+encodeURIComponent(c),{signal:ac.signal,cache:'no-store'});const j=await r.json();setOnline(true);if(!j.ok&&j.err)toast('操作失败：'+j.err);return j}
+catch(e){setOnline(false);if(c!=='status')toast('未连接到控制器，操作未生效');return {}}finally{clearTimeout(to)}}
+function setOnline(on){if(on===online)return;const was=online;online=on;document.body.classList.toggle('offline',!on);if(!on)setConn(false);
+if(on&&was===false){toast('已重新连接控制器');if(typeof loadShows==='function')loadShows()}}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&typeof poll==='function')poll()});
+// The page is served by the controller: after a firmware update it reboots and an already open page keeps
+// running the old code. Detect the reboot (uptime goes back) and ask for a reload when the version changed.
+async function checkReboot(up){const rb=up<lastUp;lastUp=up;if(!rb||!pageVer)return;const h=await cmd('hello');
+if(h.ok&&h.ver!==pageVer){$('updtxt').textContent=`控制器固件已更新到 ${h.ver}，请刷新页面以使用新版本。`;document.body.classList.add('stale')}}
+function setConn(on,tx){$('dot').className='dot'+(on?(tx?' tx':' on'):'');$('conn').textContent=on?'已连接':'未连接'}
+const STY=[[4,'演唱会'],[3,'综合'],[0,'脉冲'],[1,'换色'],[2,'音量']];
+STY.forEach(([v,n])=>{const b=document.createElement('button');b.textContent=n;b.dataset.v=v;b.onclick=()=>setk('mstyle',v).then(()=>mark(v));$('seg').appendChild(b)});
+function mark(v){document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.v==v))}
+const SW=[['红',255,0,0],['橙',255,80,0],['黄',255,200,0],['绿',0,255,0],['青',0,255,255],['蓝',0,0,255],['紫',200,0,255],['粉',255,0,120],['白',255,255,255]];
+SW.forEach(([n,r,g,b])=>{const d=document.createElement('div');d.textContent=n;d.style.background=`rgb(${r},${g},${b})`;
+d.style.color=0.2126*r+0.7152*g+0.0722*b>=140?'rgba(0,0,0,.62)':'rgba(255,255,255,.92)';d.dataset.hex=hex(r,g,b);d.dataset.n=n;d.onclick=()=>{haptic();d.classList.remove('pop');void d.offsetWidth;d.classList.add('pop');cmd(`color ${r} ${g} ${b}`).then(j=>{if(!j.ok)return;sel(d.dataset.hex);toast('已切换为'+n+'色')})};$('sw').appendChild(d)});
+// Haptic tap: Vibration API on Android; on iOS 18+ Safari, toggling a native switch checkbox gives a light tap.
+const hsw=document.createElement('label');hsw.className='hx';hsw.innerHTML='<input type="checkbox" switch>';document.body.appendChild(hsw);
+const IOS=/iP(hone|ad|od)/.test(navigator.userAgent);
+function haptic(){if(navigator.vibrate){navigator.vibrate(18)}else if(!IOS){hsw.click()}}
+// iOS: put a transparent native switch inside every tappable element so the finger toggles it directly (system haptic)
+function mkSw(){const i=document.createElement('input');i.type='checkbox';i.setAttribute('switch','');i.className='tapsw';return i}
+function addTapSwitch(el){if(!IOS||el.dataset.tap)return;el.dataset.tap=1;
+if(el.tagName!=='BUTTON'){el.classList.add('hosttap');el.appendChild(mkSw());return}
+// a button cannot contain a tappable input: wrap it and forward the switch tap to the button
+const w=document.createElement('span');w.className='hosttap tapwrap';if(getComputedStyle(el).width&&el.style.width==='100%')w.style.width='100%';
+el.parentNode.insertBefore(w,el);w.appendChild(el);const i=mkSw();i.onclick=()=>el.click();w.appendChild(i)}
+function tapSwitches(){document.querySelectorAll('button,#sw div,.rst').forEach(addTapSwitch)}
+document.addEventListener('click',e=>{if(e.target.closest('button')&&!IOS)haptic()},true);
+function hex(r,g,b){return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('')}
+function sel(h){document.querySelectorAll('#sw div').forEach(e=>e.classList.toggle('sel',e.dataset.hex===h))}
+const setk=(k,v)=>cmd(`set ${k} ${v}`);
+const SL=[['msens','灵敏度（数值越小越灵敏）',1.05,4,0.05,1.8,''],['bright','亮度',10,255,5,200,''],['mbase','底光（演唱会效果节拍间亮度）',0,60,5,0,'%']];
+SL.forEach(([k,label,mn,mx,st,def,u])=>{const w=document.createElement('div');w.className='sl';
+w.innerHTML=`<div class="t"><span>${label}<em class="def">默认 ${def}${u}</em></span><span><a class="rst" id="r-${k}">↺ 恢复</a><b id="v-${k}"></b></span></div>
+<div class="rw"><i class="tick" style="left:calc(${(def-mn)/(mx-mn)*100}% + ${12-(def-mn)/(mx-mn)*24}px)"></i><input type="range" id="${k}" min="${mn}" max="${mx}" step="${st}"></div>`;
+$('sliders').appendChild(w);const s=$(k);
+const show=()=>{$('v-'+k).textContent=s.value+u;$('r-'+k).style.visibility=Math.abs(s.value-def)<st/2?'hidden':'visible'};
+s.oninput=show;s.onchange=()=>setk(k,s.value);s._show=show;
+$('r-'+k).onclick=()=>{s.value=def;show();setk(k,def).then(j=>j.ok&&toast(label.replace(/（.*）/,'')+'已恢复默认'))}});
+function resetAll(){SL.forEach(([k,,,,,def])=>{$(k).value=def;$(k)._show();setk(k,def)});toast('已恢复默认设置，请点击“保存设置”使其永久生效')}
+$('auto').onchange=e=>setk('auto',e.target.checked?1:0);
+$('aoff').onchange=e=>setk('aoff',e.target.checked?1:0).then(j=>j.ok&&cmd('save')&&toast(e.target.checked?'已开启信号中断后自动熄灭':'已关闭信号中断后自动熄灭'));
+$('ka').onchange=e=>setk('ka',e.target.checked?1:0).then(j=>j.ok&&cmd('save')&&toast(e.target.checked?'已开启保持唤醒':'已关闭保持唤醒，使用前请先唤醒手环'));
+function setpw(){const p=$('pw').value;if(p.length<8||p.length>20)return toast('密码长度须为 8–20 位');setk('appass',p).then(j=>{if(j.ok){cmd('save');toast('密码已修改，重启控制器后生效')}})}
+const MODE={off:'熄灭',hold:'固定颜色',mic:'跟随音乐',stream:'电脑控制',show:'演唱会复刻'};
+async function poll(){const s=await cmd('status');if(!s.ok)return;checkReboot(s.uptime_s);devInfo(s);setConn(true,s.mode!='off');const cur=s.mode=='hold'?[...document.querySelectorAll('#sw div')].find(e=>e.dataset.hex===s.color):null;
+$('mode').innerHTML=(MODE[s.mode]||s.mode)+(s.mode=='hold'?` · ${cur?cur.dataset.n:'自定义'}<span class="cdot" style="background:${s.color};box-shadow:0 0 14px ${s.color}"></span>`:'');sel(s.mode=='hold'?s.color:'');
+if(s.mode=='show'&&s.show){const x=shows.find(v=>v.slot===s.show.slot);if(x)$('mode').textContent='演唱会复刻 · '+x.name;if(!showT)setProg(s.show.pos_ms,s.show.dur_ms)}
+$('curfreq').textContent=s.freq?s.freq.toFixed(3)+' MHz':'—';
+$('meta').textContent=`已运行 ${Math.floor(s.uptime_s/60)} 分钟`;showRhythm(s);$('mic').textContent=s.mic?'正常':'未接入'}
+let lastBeats=0,lastBeatT=0;
+function showRhythm(s){const now=Date.now();if(s.beats!==lastBeats){lastBeats=s.beats;lastBeatT=now}
+const hearing=s.mic&&s.bpm>0&&now-lastBeatT<4000;const d=$('beatdot');
+if(hearing){const b=Math.round(s.bpm);$('bpm').innerHTML=b+'<em>拍/分</em>';$('tempo').textContent=b>=140?'快节奏':b>=95?'中速':'慢节奏';
+d.className='beat go';d.style.setProperty('--p',(60/s.bpm).toFixed(3)+'s')}else{$('bpm').textContent='—';$('tempo').textContent='未检测到节奏';d.className='beat'}
+const v=Math.min(100,Math.round((s.level||0)/0.03*100));$('vol').style.width=v+'%';$('volt').textContent=v<15?'安静':v<50?'适中':'较大'}
+async function init(){const c=await cmd('config');if(c.ok){const k=c.config;mark(k.mstyle);SL.forEach(([n])=>{$(n).value=k[n];$(n)._show()});$('auto').checked=!!k.auto;$('ka').checked=!!k.ka;$('aoff').checked=!!k.aoff}
+const h=await cmd('hello');if(h.ok){hello=h;ssid=h.ssid;pageVer=h.ver;$('ver').textContent=`固件 ${h.ver} · ${h.ssid}`;$('offtxt').textContent=`手机可能已自动切换到其他 Wi-Fi，当前操作不会生效。请在“设置 → Wi-Fi”中重新连接 ${h.ssid}，连接后页面会自动恢复。`}await loadShows();poll();setInterval(poll,1500);if(!obSeen()&&!CNA)obOpen()}
+// Firmware update from the phone: takes the released package (afterglow-fw-x.y.z.zip) as downloaded, or a bare
+// firmware.bin. The zip is read in the page (DecompressionStream 'deflate-raw'); the controller checks the image itself.
+let fwSel=null;
+async function fwRead(f){const buf=new Uint8Array(await f.arrayBuffer());
+if(buf[0]===0xE9)return{bin:new Blob([buf]),version:null};
+if(buf[0]!==0x50||buf[1]!==0x4B)throw new Error('这不是固件包，请选择 afterglow-fw 开头的 .zip 文件');
+const dv=new DataView(buf.buffer,buf.byteOffset,buf.byteLength);let e=buf.length-22;while(e>=0&&dv.getUint32(e,true)!==0x06054b50)e--;
+if(e<0)throw new Error('固件包损坏，请重新下载');
+const n=dv.getUint16(e+10,true);let q=dv.getUint32(e+16,true);const ents={};const td=new TextDecoder();
+for(let i=0;i<n;i++){const fl=dv.getUint16(q+28,true),xl=dv.getUint16(q+30,true),cl=dv.getUint16(q+32,true);
+ents[td.decode(buf.subarray(q+46,q+46+fl))]={m:dv.getUint16(q+10,true),csz:dv.getUint32(q+20,true),off:dv.getUint32(q+42,true)};q+=46+fl+xl+cl}
+async function get(name){const t=ents[name];if(!t)throw new Error('这不是 Afterglow 控制器的固件包');
+const st=t.off+30+dv.getUint16(t.off+26,true)+dv.getUint16(t.off+28,true);const raw=buf.subarray(st,st+t.csz);
+if(t.m===0)return raw;if(t.m!==8)throw new Error('固件包格式不对，请重新下载');
+if(typeof DecompressionStream==='undefined')throw new Error('手机浏览器版本太旧：请先升级系统，或把固件包解压后选择里面的 firmware.bin');
+return new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer())}
+const man=JSON.parse(td.decode(await get('manifest.json')));if(man.name!=='afterglow-fw')throw new Error('这不是 Afterglow 控制器的固件包');
+return{bin:new Blob([await get('firmware.bin')]),version:man.version}}
+async function fwPick(f){fwSel=null;$('fwname').textContent=f?f.name:'未选择';$('fwprog').style.display='none';const info=$('fwinfo');
+if(!f){info.style.display='none';return}info.style.display='block';info.textContent='正在读取固件包…';
+try{const r=await fwRead(f);const h=await cmd('hello');fwSel=r;
+info.textContent=r.version?(h&&h.ver===r.version?`这个固件包是 ${r.version}，和控制器现在的版本一样`:`新版本 ${r.version}（控制器现在是 ${h&&h.ver?h.ver:'未知'}），点下面的按钮开始更新`):'已选择 firmware.bin'}
+catch(e){info.textContent=e.message||String(e)}}
+function upload(){if(!fwSel)return toast($('fw').files[0]?'这个文件不能用来更新，看上面的提示':'请先选择固件包');
+const x=new XMLHttpRequest(),d=new FormData();d.append('fw',fwSel.bin,'firmware.bin');const info=$('fwinfo'),btn=$('fwbtn');
+btn.disabled=true;$('fwprog').style.display='block';$('fwbar').style.width='0';info.textContent='正在上传，期间不要离开这个页面…';
+x.upload.onprogress=e=>{const p=Math.round(e.loaded*100/e.total);$('fwbar').style.width=p+'%';info.textContent=`正在上传 ${p}%，期间不要离开这个页面…`};
+x.onload=async()=>{if(x.status!=200){btn.disabled=false;info.textContent='更新失败：'+x.responseText;return}
+info.textContent='上传完成，控制器正在重启，稍等十几秒…';const want=fwSel.version;
+for(let i=0;i<20;i++){await sleep(2000);const h=await fetch('/api?c=hello',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+if(h&&h.ver&&(!want||h.ver===want)){info.textContent=`更新完成，控制器现在是 ${h.ver}`;btn.disabled=false;toast('固件更新完成');return}}
+btn.disabled=false;info.textContent='没有等到控制器回应：如果手机断开了热点，请重新连接 Afterglow 热点后刷新页面'};
+x.onerror=()=>{btn.disabled=false;info.textContent='上传中断：请确认手机还连着 Afterglow 热点，然后再试一次'};
+x.open('POST','/update');x.send(d)}
+// Battery test: the band cannot report its battery, so the user judges each level with no time limit.
+// Coarse pass 40..100 %, then 5 % steps between the last stable and first flickering level; limit = last stable - 5 %.
+const BAT_COARSE=[40,55,70,85,100];let bat={};
+function batStart(){bat={phase:'coarse',list:BAT_COARSE,i:0,stable:null};$('batrun').style.display='block';$('batdone').style.display='none';showOv('bat');batShow()}
+function batShow(){const v=bat.list[bat.i];$('batphase').textContent=bat.phase=='coarse'?`电池检测 · 粗测（${bat.i+1}/${bat.list.length}）`:`电池检测 · 细测（${bat.i+1}/${bat.list.length}）`;
+$('batstep').textContent=`红色 ${v}%`;$('batbar').style.width=v+'%';cmd(`battest ${Math.round(v*2.55)} 0 0`)}
+function batAnswer(flicker){const v=bat.list[bat.i];
+if(!flicker){bat.stable=v;bat.i++;if(bat.i<bat.list.length)return batShow();return batFinish(bat.phase=='coarse'&&v===100)}
+if(bat.phase=='coarse'){const lo=bat.stable===null?20:bat.stable;const fine=[];for(let x=lo+5;x<v;x+=5)fine.push(x);
+if(fine.length){bat={phase:'fine',list:fine,i:0,stable:bat.stable};return batShow()}}
+batFinish(false)}
+function batCancel(){hideOv('bat');cmd('off');toast('已取消电池检测')}
+async function batFinish(allStable){const stable=bat.stable===null?20:bat.stable;const pchan=allStable?100:Math.max(20,stable-5);const psum=Math.max(30,Math.min(300,Math.round(pchan*1.56)));
+await setk('pchan',pchan);await setk('psum',psum);await cmd('save');await cmd('color 255 0 0');
+const q=allStable?100:stable;const R=q>=95?['良好',4,'#2ecc71','电池电量充足，所有颜色都能稳定显示。']:q>=80?['正常',3,'#4fa8ff','电池电量正常，日常使用不受影响。']
+:q>=55?['偏弱',2,'#f5b942','电池电量偏低，红色、橙色等颜色可能出现闪烁。已自动降低亮度以避免闪烁，建议近期更换电池。']:['电量不足',1,'#ff5c6c','电池电量不足，手环可能频繁闪烁或熄灭。请更换两颗 CR2032 纽扣电池。'];
+const [lvl,bars,col,adv]=R;const icon=`<span class="batt" style="color:${col}">${[1,2,3,4].map(i=>`<i class="${i<=bars?'on':''}"></i>`).join('')}</span>`;
+const found=allStable?'全部亮度均稳定显示':`红色 ${stable}% 及以下稳定显示`;
+$('batrun').style.display='none';$('batdone').style.display='block';showOv('bat');
+$('batico').innerHTML=icon.replace('style="color:','style="transform:scale(1.8);margin:18px;color:');
+$('battitle').textContent='电池'+lvl;$('battitle').style.color=col;
+$('batdesc').innerHTML=`${adv}<br><br>检测结果：${found}。已将亮度上限自动调整为 <b>${pchan}%</b>${allStable?'':'（预留 5% 余量）'}。当前显示红色，请确认手环是否稳定。`;
+$('batres').innerHTML=`<div class="bres" style="background:${col}22;border:1px solid ${col}66">${icon}<div><b style="color:${col}">电池${lvl}</b>${adv}<br><span class="mut">${found} · 亮度上限 ${pchan}%（合计 ${psum}%）</span></div></div>`}
+// Device info for after-sales support: one screenshot tells the seller what the controller has been doing.
+const RESET={poweron:'正常通电',software:'软件重启（更新或重启）',task_wdt:'看门狗自动恢复',int_wdt:'看门狗自动恢复',wdt:'看门狗自动恢复',panic:'程序异常后自动恢复',brownout:'供电不足（检查 USB 线或电源）',external:'复位按键',deepsleep:'休眠唤醒',unknown:'未知'};
+function upTime(t){const d=Math.floor(t/86400),h=Math.floor(t%86400/3600),m=Math.floor(t%3600/60);return (d?d+' 天 ':'')+(d||h?h+' 小时 ':'')+m+' 分钟'}
+function devInfo(s){const rows=[['固件版本',hello.ver||'—'],['热点',hello.ssid||'—'],['设备编号',hello.mac||'—'],['已运行',upTime(s.uptime_s||0)],['开机次数',s.boots??'—'],['上次启动原因',RESET[s.reset]||s.reset||'—'],['工作频率',s.freq?s.freq.toFixed(3)+' MHz':'—'],['已连接手机',(s.wifi_clients??'—')+' 台']];
+const box=$('devinfo');box.querySelectorAll('.k,.v').forEach(e=>e.remove());rows.forEach(([k,v])=>{const a=document.createElement('div');a.className='k';a.textContent=k;const b=document.createElement('div');b.className='v';b.textContent=v;box.append(a,b)})}
+// Concert replica: the show (light timeline) is stored on the controller and played by it;
+// an optional music file plays on this phone and the controller clock is re-aligned to it every 5 s.
+let shows=[],showSel=null,showT=null,auUrl=null,syncN=0;
+const fmt=ms=>{const t=Math.max(0,Math.floor(ms/1000));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function setProg(pos,dur){$('sprog').style.width=Math.min(100,pos/Math.max(1,dur)*100)+'%';$('spos').textContent=fmt(pos);$('sdur').textContent=fmt(dur)}
+async function loadShows(){const r=await cmd('shows');const box=$('slist');
+if(!r.ok){box.innerHTML='<div class="mut">当前固件不支持复刻播放，请更新控制器固件。</div>';return}
+shows=r.shows||[];if(!shows.length){box.innerHTML='<div class="mut">控制器中还没有节目。请在电脑端“演唱会复刻”页面选中复刻并写入控制器。</div>';return}
+if(!shows.some(x=>x.slot===showSel))showSel=shows[0].slot;box.innerHTML='';
+shows.forEach(x=>{const d=document.createElement('div');d.className='sitem'+(x.slot===showSel?' on':'');d.dataset.slot=x.slot;
+d.innerHTML=`<span class="si">♪</span><span style="flex:1"><b></b><small>${fmt(x.dur_ms)} · ${x.cues} 个换色点</small></span>`;d.querySelector('b').textContent=x.name;
+d.onclick=()=>{showSel=x.slot;document.querySelectorAll('.sitem').forEach(e=>e.classList.toggle('on',+e.dataset.slot===x.slot));if(!showT)setProg(0,x.dur_ms)};box.appendChild(d)});
+setProg(0,shows.find(x=>x.slot===showSel).dur_ms);tapSwitches()}
+// No accept filter: iOS greys out .m4a files in the Files picker when accept="audio/*" is set.
+function pickAudio(inp){const f=inp.files[0];if(!f)return;if(!/^(audio|video)\//.test(f.type)&&!/\.(m4a|mp3|wav|aac|flac|mp4|mov)$/i.test(f.name)){inp.value='';return toast('请选择音频文件（m4a、mp3、wav 等）')}if(auUrl)URL.revokeObjectURL(auUrl);auUrl=URL.createObjectURL(f);$('au').src=auUrl;$('auname').textContent=f.name}
+async function showPlay(){const x=shows.find(v=>v.slot===showSel);if(!x)return toast('请先选择节目');const au=$('au');showHalt();
+if(au.src){au.currentTime=0;try{await au.play()}catch(e){return toast('无法播放该音乐文件')}
+const j=await cmd(`showplay ${x.slot} ${Math.round(au.currentTime*1000)}`);if(!j.ok){au.pause();return}
+au.onended=()=>showStop();syncN=0;
+showT=setInterval(()=>{const p=au.currentTime*1000;setProg(p,x.dur_ms);if(au.paused&&!au.ended){showStop();return}if(++syncN%20==0)cmd('showsync '+Math.round(p))},250)}
+else{const j=await cmd(`showplay ${x.slot} 0`);if(!j.ok)return;const t0=Date.now();
+showT=setInterval(()=>{const p=Date.now()-t0;setProg(p,x.dur_ms);if(p>=x.dur_ms)showHalt()},250)}
+toast('开始播放：'+x.name)}
+function showHalt(){clearInterval(showT);showT=null}
+function showStop(){showHalt();const au=$('au');if(!au.paused)au.pause();cmd('off');const x=shows.find(v=>v.slot===showSel);if(x)setProg(0,x.dur_ms)}
+
+// Band adaptation (same method as the desktop app): full power over candidate frequencies; if many respond,
+// repeat those at low power; recommend the weighted centre of the longest responding run.
+let ad=null;const AD_LIST=[];for(let f=433.72;f<=434.12+1e-6;f+=0.05)AD_LIST.push(Math.round(f*1000)/1000);
+async function adStart(){const c=await cmd('config');if(!c.ok)return;showStop();
+ad={phase:1,list:AD_LIST.slice(),res:AD_LIST.map(()=>null),i:0,dwell:20,orig:c.config.freq,origDbm:c.config.dbm,timer:null};
+await sleep(700);await setk('dbm',10);$('adres').innerHTML='';
+$('adtip').textContent='手环竖放在控制器旁约 30 厘米处，观察是否跟随红蓝交替闪烁。';showOv('ad');adTest()}
+function adPills(){$('adpills').innerHTML=ad.list.map((f,i)=>{const r=ad.res[i];return `<span class="${r===1?'y':r===.5?'h':i===ad.i?'c':''}">${f.toFixed(2)}</span>`}).join('')}
+// ad.busy: answers are ignored while the radio switches frequency (a fast double tap used to start two rounds)
+async function adTest(){if(!ad)return;if(ad.i>=ad.list.length)return adFinish();ad.busy=true;const f=ad.list[ad.i];
+$('adphase').textContent=ad.phase===2?'第二轮 · 低功率精确定位':'第一轮 · 确定可用范围';$('adfreq').textContent=f.toFixed(3)+' MHz';
+$('adidx').textContent=`${ad.i+1} / ${ad.list.length}`;$('adleft').textContent='';$('adbar').style.width='0';adPills();await cmd('off');await sleep(700);if(!ad)return;
+const r=await setk('freq',f);if(!r.ok)return adStop();if(!ad)return;ad.busy=false;ad.t0=Date.now();let k=0;clearInterval(ad.timer);
+ad.timer=setInterval(()=>{const left=ad.dwell-(Date.now()-ad.t0)/1000;$('adbar').style.width=Math.min(100,(1-left/ad.dwell)*100)+'%';
+$('adleft').textContent=`剩余 ${Math.max(0,Math.ceil(left))} 秒`;if(left<=0)return adAnswer(0);
+if(k++%4===0)cmd(Math.floor(k/4)%2?'color 0 0 255':'color 255 0 0')},250)}
+function adAnswer(w){if(!ad||ad.busy)return;clearInterval(ad.timer);ad.res[ad.i]=w;ad.i++;adTest()}
+async function adStop(){if(!ad)return;const a=ad;ad=null;clearInterval(a.timer);hideOv('ad');
+await cmd('off');await sleep(700);await setk('freq',a.orig);await setk('dbm',a.origDbm);toast('已停止适配，已恢复原频率');obAfterAdapt(false)}
+async function adFinish(){clearInterval(ad.timer);await cmd('off');let hits=ad.list.filter((f,i)=>ad.res[i]>0);
+if(ad.phase===1&&hits.length>=3){await sleep(700);await setk('dbm',0);
+ad.phase=2;ad.list=hits;ad.res=hits.map(()=>null);ad.i=0;$('adtip').textContent='第二轮以低功率重新测试有反应的频率，请将手环放在控制器旁约 30 厘米处。';return adTest()}
+if(ad.phase===2&&!hits.length){hits=ad.list;ad.res=ad.list.map(()=>1)}
+let best=null;if(hits.length){const runs=[];let cur=[];ad.list.forEach((f,i)=>{if(ad.res[i]>0)cur.push([f,ad.res[i]]);else if(cur.length){runs.push(cur);cur=[]}});if(cur.length)runs.push(cur);
+const run=runs.sort((a,b)=>b.length-a.length)[0];const w=run.reduce((a,[,x])=>a+x,0);best=Math.round(run.reduce((a,[f,x])=>a+f*x,0)/w*2000)/2000}
+const a=ad;ad=null;hideOv('ad');await sleep(700);await setk('dbm',a.origDbm);await setk('freq',best??a.orig);
+if(best===null){$('adres').innerHTML='<div class="bres" style="background:#ff5c6c22;border:1px solid #ff5c6c66"><div><b style="color:#ff8a96">未找到可用频率</b>手环在所有测试频率上均无反应，已恢复原频率。请将手环靠近控制器、确认电池电量后重试。</div></div>';obAfterAdapt(false);return}
+await cmd('save');$('curfreq').textContent=best.toFixed(3)+' MHz';
+$('adres').innerHTML=`<div class="bres" style="background:#2ecc7122;border:1px solid #2ecc7166"><div><b style="color:#7ff0ae">已保存频率 ${best.toFixed(3)} MHz</b>手环在 ${hits.map(f=>f.toFixed(2)).join('、')} MHz 有反应，已取中心频率并保存到控制器。</div></div>`;toast('适配完成');obAfterAdapt(true)}
+async function adDefault(){showStop();await sleep(700);const r=await setk('freq','433.92');if(r.ok){await cmd('save');$('curfreq').textContent='433.920 MHz';$('adres').innerHTML='';toast('已恢复默认频率 433.92 MHz')}}
+
+// Factory reset: settings and stored shows are cleared, then the controller restarts.
+function factory(b){if(!b.dataset.armed){b.dataset.armed=1;b.textContent='再次点击确认恢复出厂设置';setTimeout(()=>{delete b.dataset.armed;b.textContent='恢复出厂设置'},4000);return}
+cmd('off').then(()=>sleep(700)).then(()=>cmd('factory')).then(j=>{if(!j.ok)return;try{localStorage.removeItem('fl_onboarded')}catch(e){}
+toast('已恢复出厂设置，控制器正在重启');cmd('reboot')})}
+// First-use guide: wake the bands, confirm one lights up, point to the main features.
+function obSeen(){try{return localStorage.getItem('fl_onboarded')==='1'}catch(e){return true}}
+function obMark(){try{localStorage.setItem('fl_onboarded','1')}catch(e){}}
+let obTimer=null;
+function obStep(n,html){document.querySelectorAll('#obsteps i').forEach((e,i)=>e.classList.toggle('on',i<=n));$('obbody').innerHTML=html;tapSwitches()}
+function obOpen(){showOv('ob');ob0()}
+function obClose(){clearInterval(obTimer);hideOv('ob');obMark()}
+function ob0(){obStep(0,`<div style="margin:-4px 0 6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="96" height="96" aria-hidden="true"><defs><mask id="agdm" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M13.65 72.48L16.27 78.14L27.86 69.85L26.78 68.22Z" fill="rgb(255,255,255)"/><path d="M15.08 76.11L18.75 81.21L28.89 70.85L27.39 69.26Z" fill="rgb(255,255,255)"/><path d="M17.19 79.42L21.73 83.84L30.26 71.84L28.24 70.25Z" fill="rgb(255,255,255)"/><path d="M19.89 82.32L25.14 86.02L32.02 72.81L29.39 71.25Z" fill="rgb(255,255,255)"/><path d="M23.05 84.77L28.89 87.77L34.19 73.69L30.91 72.24Z" fill="rgb(255,255,255)"/><path d="M26.60 86.77L32.94 89.09L36.75 74.44L32.84 73.17Z" fill="rgb(255,255,255)"/><path d="M30.48 88.35L37.23 90.02L39.67 75.03L35.17 74.01Z" fill="rgb(255,255,255)"/><path d="M34.63 89.51L41.72 90.56L42.91 75.41L37.87 74.70Z" fill="rgb(255,255,255)"/><path d="M39.00 90.28L46.38 90.72L46.42 75.57L40.93 75.21Z" fill="rgb(255,255,255)"/><path d="M43.57 90.67L51.16 90.52L50.15 75.50L44.28 75.50Z" fill="rgb(255,255,255)"/><path d="M48.28 90.69L56.01 89.96L54.04 75.18L47.89 75.57Z" fill="rgb(255,255,255)"/><path d="M53.09 90.34L60.89 89.06L58.05 74.61L51.69 75.40Z" fill="rgb(255,255,255)"/><path d="M57.96 89.64L65.76 87.82L62.11 73.81L55.64 74.98Z" fill="rgb(255,255,255)"/><path d="M62.84 88.60L70.56 86.27L66.18 72.77L59.67 74.32Z" fill="rgb(255,255,255)"/><path d="M67.69 87.24L75.24 84.42L70.19 71.51L63.74 73.42Z" fill="rgb(255,255,255)"/><path d="M72.45 85.57L79.76 82.30L74.10 70.05L67.79 72.29Z" fill="rgb(255,255,255)"/><path d="M77.07 83.61L84.07 79.92L77.85 68.40L71.77 70.95Z" fill="rgb(255,255,255)"/><path d="M81.51 81.38L88.12 77.30L81.40 66.59L75.62 69.41Z" fill="rgb(255,255,255)"/><path d="M85.72 78.90L91.88 74.48L84.70 64.64L79.30 67.69Z" fill="rgb(255,255,255)"/><path d="M89.66 76.20L95.29 71.48L87.72 62.58L82.75 65.82Z" fill="rgb(255,255,255)"/><path d="M93.29 73.30L98.33 68.33L90.41 60.45L85.94 63.83Z" fill="rgb(250,250,250)"/><path d="M96.55 70.24L100.95 65.05L92.74 58.27L88.83 61.73Z" fill="rgb(244,244,244)"/><path d="M99.43 67.03L103.13 61.67L94.70 56.08L91.38 59.58Z" fill="rgb(238,238,238)"/><path d="M101.88 63.70L104.82 58.22L96.27 53.93L93.57 57.39Z" fill="rgb(232,232,232)"/><path d="M103.87 60.29L105.99 54.73L97.45 51.83L95.37 55.22Z" fill="rgb(226,226,226)"/><path d="M105.35 56.82L106.60 51.25L98.25 49.81L96.79 53.08Z" fill="rgb(220,220,220)"/><path d="M106.30 53.34L106.62 47.84L98.68 47.88L97.81 51.01Z" fill="rgb(215,215,215)"/><path d="M106.68 49.88L106.04 44.58L98.76 46.01L98.46 49.03Z" fill="rgb(209,209,209)"/><path d="M106.46 46.52L104.87 41.55L98.48 44.18L98.76 47.12Z" fill="rgb(203,203,203)"/><path d="M105.64 43.34L103.16 38.84L97.79 42.36L98.69 45.27Z" fill="rgb(197,197,197)"/><path d="M104.25 40.43L100.98 36.47L96.67 40.57L98.25 43.45Z" fill="rgb(191,191,191)"/><path d="M102.34 37.85L98.41 34.47L95.07 38.85L97.40 41.64Z" fill="rgb(185,185,185)"/><path d="M100.00 35.63L95.48 32.81L93.00 37.26L96.09 39.87Z" fill="rgb(179,179,179)"/><path d="M97.27 33.77L92.24 31.49L90.48 35.84L94.30 38.20Z" fill="rgb(174,174,174)"/><path d="M94.22 32.24L88.72 30.48L87.54 34.64L92.04 36.67Z" fill="rgb(168,168,168)"/><path d="M90.86 31.05L84.94 29.78L84.23 33.71L89.35 35.33Z" fill="rgb(162,162,162)"/><path d="M87.24 30.16L80.95 29.39L80.60 33.05L86.26 34.24Z" fill="rgb(156,156,156)"/><path d="M83.37 29.59L76.76 29.29L76.70 32.69L82.81 33.41Z" fill="rgb(150,150,150)"/><path d="M79.29 29.31L72.43 29.50L72.59 32.63L79.07 32.87Z" fill="rgb(144,144,144)"/><path d="M75.04 29.34L67.99 30.00L68.33 32.88L75.08 32.63Z" fill="rgb(138,138,138)"/><path d="M70.66 29.67L63.48 30.79L63.96 33.43L70.90 32.69Z" fill="rgb(129,129,129)"/><path d="M66.19 30.28L58.96 31.86L59.56 34.28L66.59 33.06Z" fill="rgb(121,121,121)"/><path d="M61.67 31.18L54.47 33.20L55.16 35.41L62.20 33.73Z" fill="rgb(113,113,113)"/><path d="M57.16 32.36L50.07 34.80L50.82 36.81L57.79 34.69Z" fill="rgb(104,104,104)"/><path d="M52.70 33.81L45.79 36.64L46.60 38.45L53.41 35.93Z" fill="rgb(96,96,96)"/><path d="M48.34 35.51L41.70 38.70L42.55 40.33L49.12 37.44Z" fill="rgb(88,88,88)"/><path d="M44.13 37.44L37.83 40.96L38.71 42.41L44.96 39.18Z" fill="rgb(79,79,79)"/><path d="M40.12 39.58L34.23 43.40L35.12 44.67L40.99 41.14Z" fill="rgb(71,71,71)"/><path d="M36.35 41.92L30.95 46.00L31.84 47.08L37.24 43.30Z" fill="rgb(63,63,63)"/><path d="M32.88 44.42L28.02 48.71L28.88 49.61L33.77 45.62Z" fill="rgb(54,54,54)"/><path d="M29.73 47.07L25.48 51.52L26.29 52.22L30.61 48.08Z" fill="rgb(46,46,46)"/><path d="M26.95 49.83L23.36 54.39L24.09 54.90L27.80 50.64Z" fill="rgb(38,38,38)"/><path d="M24.58 52.67L21.70 57.29L22.29 57.60L25.36 53.29Z" fill="rgb(29,29,29)"/><path d="M22.64 55.55L20.52 60.17L20.92 60.32L23.32 55.98Z" fill="rgb(21,21,21)"/><path d="M21.17 58.44L19.84 62.99L19.98 63.02L21.69 58.69Z" fill="rgb(13,13,13)"/><path d="M20.19 61.31L19.72 64.09L19.72 64.09L20.50 61.40Z" fill="rgb(4,4,4)"/><circle cx="20.22" cy="70.35" r="6.90" fill="#fff"/></mask><radialGradient id="agdg"><stop offset="0" stop-color="#FFE2AA" stop-opacity="0.75"/><stop offset="0.38" stop-color="#FF9655" stop-opacity="0.28"/><stop offset="1" stop-color="#FF7850" stop-opacity="0"/></radialGradient></defs><circle cx="20.22" cy="70.35" r="18.00" fill="url(#agdg)"/><g mask="url(#agdm)"><path d="M13.65 72.48L16.27 78.14L27.86 69.85L26.78 68.22Z" fill="#FFE3B2"/><path d="M15.08 76.11L18.75 81.21L28.89 70.85L27.39 69.26Z" fill="#FFDBA6"/><path d="M17.19 79.42L21.73 83.84L30.26 71.84L28.24 70.25Z" fill="#FFD39A"/><path d="M19.89 82.32L25.14 86.02L32.02 72.81L29.39 71.25Z" fill="#FFCA8E"/><path d="M23.05 84.77L28.89 87.77L34.19 73.69L30.91 72.24Z" fill="#FFC282"/><path d="M26.60 86.77L32.94 89.09L36.75 74.44L32.84 73.17Z" fill="#FFBA76"/><path d="M30.48 88.35L37.23 90.02L39.67 75.03L35.17 74.01Z" fill="#FFB26A"/><path d="M34.63 89.51L41.72 90.56L42.91 75.41L37.87 74.70Z" fill="#FFAD66"/><path d="M39.00 90.28L46.38 90.72L46.42 75.57L40.93 75.21Z" fill="#FFA965"/><path d="M43.57 90.67L51.16 90.52L50.15 75.50L44.28 75.50Z" fill="#FFA463"/><path d="M48.28 90.69L56.01 89.96L54.04 75.18L47.89 75.57Z" fill="#FFA062"/><path d="M53.09 90.34L60.89 89.06L58.05 74.61L51.69 75.40Z" fill="#FF9C60"/><path d="M57.96 89.64L65.76 87.82L62.11 73.81L55.64 74.98Z" fill="#FF985F"/><path d="M62.84 88.60L70.56 86.27L66.18 72.77L59.67 74.32Z" fill="#FF945E"/><path d="M67.69 87.24L75.24 84.42L70.19 71.51L63.74 73.42Z" fill="#FF8F5C"/><path d="M72.45 85.57L79.76 82.30L74.10 70.05L67.79 72.29Z" fill="#FF8B5B"/><path d="M77.07 83.61L84.07 79.92L77.85 68.40L71.77 70.95Z" fill="#FF8759"/><path d="M81.51 81.38L88.12 77.30L81.40 66.59L75.62 69.41Z" fill="#FF8358"/><path d="M85.72 78.90L91.88 74.48L84.70 64.64L79.30 67.69Z" fill="#FF7F57"/><path d="M89.66 76.20L95.29 71.48L87.72 62.58L82.75 65.82Z" fill="#FF7A55"/><path d="M93.29 73.30L98.33 68.33L90.41 60.45L85.94 63.83Z" fill="#FE7857"/><path d="M96.55 70.24L100.95 65.05L92.74 58.27L88.83 61.73Z" fill="#FD7659"/><path d="M99.43 67.03L103.13 61.67L94.70 56.08L91.38 59.58Z" fill="#FC745B"/><path d="M101.88 63.70L104.82 58.22L96.27 53.93L93.57 57.39Z" fill="#FA725D"/><path d="M103.87 60.29L105.99 54.73L97.45 51.83L95.37 55.22Z" fill="#F9705F"/><path d="M105.35 56.82L106.60 51.25L98.25 49.81L96.79 53.08Z" fill="#F86D61"/><path d="M106.30 53.34L106.62 47.84L98.68 47.88L97.81 51.01Z" fill="#F76B63"/><path d="M106.68 49.88L106.04 44.58L98.76 46.01L98.46 49.03Z" fill="#F66965"/><path d="M106.46 46.52L104.87 41.55L98.48 44.18L98.76 47.12Z" fill="#F56767"/><path d="M105.64 43.34L103.16 38.84L97.79 42.36L98.69 45.27Z" fill="#F36569"/><path d="M104.25 40.43L100.98 36.47L96.67 40.57L98.25 43.45Z" fill="#F2636B"/><path d="M102.34 37.85L98.41 34.47L95.07 38.85L97.40 41.64Z" fill="#F1606D"/><path d="M100.00 35.63L95.48 32.81L93.00 37.26L96.09 39.87Z" fill="#F05E6F"/><path d="M97.27 33.77L92.24 31.49L90.48 35.84L94.30 38.20Z" fill="#EF5C71"/><path d="M94.22 32.24L88.72 30.48L87.54 34.64L92.04 36.67Z" fill="#EE5A73"/><path d="M90.86 31.05L84.94 29.78L84.23 33.71L89.35 35.33Z" fill="#EC5875"/><path d="M87.24 30.16L80.95 29.39L80.60 33.05L86.26 34.24Z" fill="#EB5677"/><path d="M83.37 29.59L76.76 29.29L76.70 32.69L82.81 33.41Z" fill="#EA5479"/><path d="M79.29 29.31L72.43 29.50L72.59 32.63L79.07 32.87Z" fill="#E9527B"/><path d="M75.04 29.34L67.99 30.00L68.33 32.88L75.08 32.63Z" fill="#E7507C"/><path d="M70.66 29.67L63.48 30.79L63.96 33.43L70.90 32.69Z" fill="#E54F7C"/><path d="M66.19 30.28L58.96 31.86L59.56 34.28L66.59 33.06Z" fill="#E34E7C"/><path d="M61.67 31.18L54.47 33.20L55.16 35.41L62.20 33.73Z" fill="#E14D7C"/><path d="M57.16 32.36L50.07 34.80L50.82 36.81L57.79 34.69Z" fill="#DE4D7D"/><path d="M52.70 33.81L45.79 36.64L46.60 38.45L53.41 35.93Z" fill="#DC4C7D"/><path d="M48.34 35.51L41.70 38.70L42.55 40.33L49.12 37.44Z" fill="#DA4B7D"/><path d="M44.13 37.44L37.83 40.96L38.71 42.41L44.96 39.18Z" fill="#D74A7D"/><path d="M40.12 39.58L34.23 43.40L35.12 44.67L40.99 41.14Z" fill="#D54A7D"/><path d="M36.35 41.92L30.95 46.00L31.84 47.08L37.24 43.30Z" fill="#D3497D"/><path d="M32.88 44.42L28.02 48.71L28.88 49.61L33.77 45.62Z" fill="#D1487D"/><path d="M29.73 47.07L25.48 51.52L26.29 52.22L30.61 48.08Z" fill="#CE477D"/><path d="M26.95 49.83L23.36 54.39L24.09 54.90L27.80 50.64Z" fill="#CC467D"/><path d="M24.58 52.67L21.70 57.29L22.29 57.60L25.36 53.29Z" fill="#CA467E"/><path d="M22.64 55.55L20.52 60.17L20.92 60.32L23.32 55.98Z" fill="#C8457E"/><path d="M21.17 58.44L19.84 62.99L19.98 63.02L21.69 58.69Z" fill="#C5447E"/><path d="M20.19 61.31L19.72 64.09L19.72 64.09L20.50 61.40Z" fill="#C3437E"/><circle cx="20.22" cy="70.35" r="6.90" fill="#FFE7B8"/></g><circle cx="20.22" cy="70.35" r="5.38" fill="#FFF6E2"/></svg></div><h3>欢迎使用 Afterglow 余场</h3><div class="mut">接下来约 1 分钟完成首次设置：唤醒手环，并确认手环可以被控制。</div><div class="btns" style="margin-top:18px"><button class="primary" onclick="ob1()">开始</button><button onclick="obClose()">跳过</button></div><button style="width:100%;margin-top:12px;background:none;border:0;color:var(--mut);font-size:13px;padding:8px" onclick="obAdapt()">想先确认频率？直接自动适配手环 ›</button>`)}
+function ob1(){obStep(1,`<h3>准备手环</h3><div class="mut">请确认手环已装好电池，<b>竖放</b>在控制器旁 30 厘米以内。<br>手环需要连续接收约 30 秒信号才会被唤醒。</div><div class="btns" style="margin-top:18px"><button class="primary" onclick="ob2()">开始唤醒</button><button onclick="obClose()">跳过</button></div>`)}
+async function ob2(){showStop();await cmd('wake 30');let left=30;
+obStep(2,`<h3>正在唤醒手环</h3><div class="big" id="obleft">30</div><div class="mut">请保持手环靠近控制器，不要移动。</div><div class="vol" style="margin-top:14px"><i id="obbar"></i></div>`);
+clearInterval(obTimer);obTimer=setInterval(()=>{left--;$('obleft').textContent=left;$('obbar').style.width=(30-left)/30*100+'%';if(left<=0){clearInterval(obTimer);ob3()}},1000)}
+async function ob3(){await cmd('color 0 255 255');obStep(3,`<h3>手环亮了吗？</h3><div class="mut">手环现在应显示<b style="color:#4ff">青色</b>。</div><div class="btns" style="margin-top:18px;grid-template-columns:1fr 1fr"><button class="primary" onclick="ob4()">已亮起</button><button onclick="obFail()">没有亮</button></div>`)}
+function obFail(){obStep(3,`<h3>请检查以下几点</h3><ul><li>手环竖放，距离控制器 30 厘米以内</li><li>电池安装正确、电量充足，可尝试更换 CR2032 电池</li><li>以上都正常仍不亮，可能是手环频率略有偏差，点击下方“自动适配频率”</li></ul><div class="btns" style="margin-top:18px;grid-template-columns:1fr 1fr"><button class="primary" onclick="ob2()">重新唤醒</button><button onclick="obAdapt()">自动适配频率</button></div><button style="width:100%;margin-top:10px;background:none;border:0;color:var(--mut);font-size:13px;padding:8px" onclick="cmd('off');obClose()">稍后处理</button>`)}
+// The guide can hand over to the adapter and take back over when it ends: lit -> confirm again, not found -> checklist.
+let obAd=false;
+function obAdapt(){obAd=true;clearInterval(obTimer);hideOv('ob');adStart()}
+function obAfterAdapt(found){if(!obAd)return;obAd=false;showOv('ob');if(found)ob3();else obFail()}
+function ob4(){cmd('off');obStep(4,`<h3>设置热点密码</h3><div class="mut">控制器目前使用出厂默认密码。建议改成你自己的密码，防止他人连接并控制你的手环。</div>
+<input type="password" id="obpw" placeholder="8–20 位密码" style="margin-top:14px"><div class="btns" style="margin-top:14px;grid-template-columns:1fr 1fr"><button class="primary" onclick="obPw()">保存密码</button><button onclick="obDone()">暂不设置</button></div>`)}
+async function obPw(){const p=$('obpw').value;if(p.length<8||p.length>20)return toast('密码长度须为 8–20 位');const j=await setk('appass',p);if(!j.ok)return;await cmd('save');
+obDone('新密码已保存，将在控制器下次重启后生效。届时手机需要用新密码重新连接热点。')}
+function obDone(note){obStep(4,`<h3>设置完成</h3><div class="mut">点击“跟随音乐”，手环会随现场音乐闪烁；也可以选择固定颜色或播放演唱会复刻。<br><br>建议先做一次电池检测，控制器会自动设置不会闪烁的亮度上限。${typeof note==='string'?'<br><br>'+note:''}</div><div class="btns" style="margin-top:18px;grid-template-columns:1fr 1fr"><button class="primary" onclick="obClose();batStart()">电池检测</button><button onclick="obClose()">开始使用</button></div>`)}
+// iOS captive-portal sheet: its web view has no "Safari" token in the user agent
+// The guide is not shown there: it would cover the "stay connected, go to Safari" button; it opens in Safari.
+const CNA=IOS&&!/Safari\//.test(navigator.userAgent);if(CNA)$('cna').style.display='block';
+// App-like frame: iOS ignores user-scalable=no, so block pinch-zoom gestures here (vertical scrolling stays).
+for(const ev of ['gesturestart','gesturechange'])document.addEventListener(ev,e=>e.preventDefault(),{passive:false});
+// Motion (GSAP-style eases on the Web Animations API): expo.out for entrances, power3 for exits.
+const EASE={out:'cubic-bezier(0.16,1,0.3,1)',p3out:'cubic-bezier(0.215,0.61,0.355,1)',p3in:'cubic-bezier(0.55,0.055,0.675,0.19)'};
+const CALM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const T=ms=>CALM?0:ms;
+// Run fn when animation a ends; a timer backs it up (finish events wait for rendering, which pauses in background tabs). tok guards against a newer animation.
+function after(o,a,ms,fn){const t=o._tok=(o._tok||0)+1;const f=()=>{if(o._tok!==t)return;o._tok++;fn()};a.onfinish=f;setTimeout(f,ms+80)}
+function showOv(id){const o=$(id),c=o.querySelector('.ovc');if(o._a){o._a.forEach(a=>a.cancel());o._a=null}
+if(o.classList.contains('show')&&!o._closing)return;o._closing=false;o._tok=(o._tok||0)+1;o.classList.add('show');
+o._a=[o.animate({opacity:[0,1]},{duration:T(260),easing:EASE.p3out}),
+c.animate({opacity:[0,1],transform:['translateY(24px) scale(.96)','none']},{duration:T(560),easing:EASE.out})]}
+function hideOv(id){const o=$(id),c=o.querySelector('.ovc');if(!o.classList.contains('show')||o._closing)return;o._closing=true;
+if(o._a)o._a.forEach(a=>a.cancel());
+const a=o.animate({opacity:[1,0]},{duration:T(240),easing:EASE.p3in,fill:'forwards'});
+c.animate({transform:['none','translateY(12px) scale(.98)']},{duration:T(240),easing:EASE.p3in,fill:'forwards'});
+o._a=[a];after(o,a,T(240),()=>{o.classList.remove('show');o.getAnimations({subtree:true}).forEach(x=>x.cancel());o._closing=false;o._a=null})}
+// Folding cards: height + content animate together; a click mid-animation reverses from where it is.
+function foldNatural(d,open){const was=d.open;d.open=open;const h=d.getBoundingClientRect().height;d.open=was;return h}
+function toggleFold(d){const from=d.getBoundingClientRect().height;d._tok=(d._tok||0)+1;if(d._a){d._a.cancel();d._a=null}
+d.querySelectorAll(':scope>:not(summary)').forEach(el=>el.getAnimations().forEach(a=>a.cancel()));
+const opening=!d.open||d._closing;d._closing=false;d.classList.remove('closing');d.style.overflow='hidden';
+if(opening){d.open=true;const to=d.getBoundingClientRect().height;
+d._a=d.animate({height:[from+'px',to+'px']},{duration:T(520),easing:EASE.out});
+d.querySelectorAll(':scope>:not(summary)').forEach((el,i)=>el.animate({opacity:[0,1],transform:['translateY(-8px)','none']},{duration:T(480),delay:T(60+i*30),easing:EASE.out,fill:'backwards'}));
+after(d,d._a,T(520),()=>{d.getAnimations({subtree:true}).forEach(x=>x.cancel());d.style.overflow='';d._a=null})}
+else{d._closing=true;d.classList.add('closing');const to=foldNatural(d,false);
+d._a=d.animate({height:[from+'px',to+'px']},{duration:T(380),easing:'cubic-bezier(0.65,0,0.35,1)'});
+after(d,d._a,T(380),()=>{d.getAnimations().forEach(x=>x.cancel());d.open=false;d._closing=false;d.classList.remove('closing');d.style.overflow='';d._a=null})}}
+document.querySelectorAll('details.fold>summary').forEach(sm=>sm.addEventListener('click',e=>{e.preventDefault();toggleFold(sm.parentElement)}));
+// Guide pages slide in.
+const _obStep=obStep;obStep=function(n,html){_obStep(n,html);$('obbody').animate({opacity:[0,1],transform:['translateX(18px)','none']},{duration:T(460),easing:EASE.out})};
+// Folding cards: remember which are open on this phone.
+document.querySelectorAll('details.fold').forEach(d=>{const k='fold_'+d.dataset.fold;try{const v=localStorage.getItem(k);if(v!==null)d.open=v==='1'}catch(e){}d.addEventListener('toggle',()=>{try{localStorage.setItem(k,d.open?'1':'0')}catch(e){}})});
+init();tapSwitches();
+</script></body></html>

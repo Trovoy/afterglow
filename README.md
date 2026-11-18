@@ -9,9 +9,10 @@
 [![最新版本](https://img.shields.io/github/v/release/Trovoy/afterglow?label=%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC&color=ff8a4c)](https://github.com/Trovoy/afterglow/releases/latest)
 [![下载次数](https://img.shields.io/github/downloads/Trovoy/afterglow/total?label=%E4%B8%8B%E8%BD%BD&color=555)](https://github.com/Trovoy/afterglow/releases)
 ![平台](https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Windows%2010%20%7C%2011-555)
-![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-%E4%B8%AA%E4%BA%BA%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8-555)
+[![许可](https://img.shields.io/github/license/Trovoy/afterglow?label=%E8%AE%B8%E5%8F%AF&color=555)](LICENSE)
+[![CI](https://github.com/Trovoy/afterglow/actions/workflows/ci.yml/badge.svg)](https://github.com/Trovoy/afterglow/actions/workflows/ci.yml)
 
-[**下载**](https://github.com/Trovoy/afterglow/releases/latest) · [**DIY 指南**](docs/DIY指南.md) · [常见问题](docs/常见问题.md) · [更新日志](CHANGELOG.md)
+[**下载**](https://github.com/Trovoy/afterglow/releases/latest) · [**DIY 指南**](docs/DIY指南.md) · [常见问题](docs/常见问题.md) · [从源码编译](docs/从源码编译.md) · [更新日志](CHANGELOG.md)
 
 </div>
 
@@ -82,6 +83,20 @@ GitHub 下载慢的话，可以多试几次，或者用手机热点下载。
 
 控制器到手环**约 1 米**（实测 0.7～1.3 米，看手环朝向和房间摆放）。天线一定要拧上；手环戴在手上或立着比平放在桌上收得好。详见 [常见问题](docs/常见问题.md#距离为什么只有-1-米左右)。
 
+## 源代码
+
+Afterglow 余场是开源项目，固件、电脑端和手机控制页面的全部源代码都在这个仓库里，按 [MIT 许可证](LICENSE) 发布。
+
+| 目录 | 内容 | 语言 |
+| --- | --- | --- |
+| [`firmware/`](firmware) | 控制器固件：CC1101 射频发射、麦克风节拍、Wi-Fi 热点和手机控制页面 | C++（Arduino / PlatformIO） |
+| [`firmware/web/`](firmware/web) | 手机控制页面（编译时嵌入固件） | HTML / CSS / JavaScript |
+| [`studio/`](studio) | 电脑端 Afterglow Studio 和安装程序 | Python + HTML / CSS / JavaScript |
+
+怎么编译见 **[从源码编译](docs/从源码编译.md)**，想参与改进请先看 [贡献指南](CONTRIBUTING.md)。
+
+> 余场目前只做问题修复，不再增加新功能。
+
 ## 问题反馈
 
 遇到问题先看 [常见问题](docs/常见问题.md)。还解决不了，请到 [Issues](https://github.com/Trovoy/afterglow/issues/new/choose) 提交，写清楚软件版本、固件版本和做了什么操作。
@@ -98,6 +113,8 @@ GitHub 下载慢的话，可以多试几次，或者用手机热点下载。
 
 ## 许可
 
-软件和固件**免费供个人非商业使用**，不开放源代码；文档和图片按 CC BY-NC-SA 4.0 共享。详见 [LICENSE](LICENSE.md)。
+- **源代码**（`firmware/`、`studio/`）：[MIT 许可证](LICENSE)。可以自由使用、修改、分发，包括商用，只需保留版权声明和许可证全文。
+- **文档和图片**（`README.md`、`docs/`）：[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)，转载请注明出处「Afterglow 余场」并附上本仓库链接。
+- **名称和标志**：「Afterglow 余场」名称和光环标志不在上述许可范围内。修改后再发布的版本，请换用你自己的名称和标志，避免让人以为是官方版本。
 
 本项目用到的开源组件和参考资料见 [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)。

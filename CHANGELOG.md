@@ -4,6 +4,14 @@
 
 电脑端软件（Afterglow Studio）和控制器固件分别编号；每个 Studio 版本都自带当时最新的固件。
 
+## [未发布]
+
+### 开源
+
+- 固件、手机控制页面和电脑端 Afterglow Studio 的全部源代码按 MIT 许可证开源，见 `firmware/` 和 `studio/` 目录
+- 新增 [从源码编译](docs/从源码编译.md)、[贡献指南](CONTRIBUTING.md)、[安全问题](SECURITY.md) 和自动编译检查（CI）
+- 余场此后只做问题修复，不再增加新功能
+
 ## [Studio 0.4.3 / 固件 0.9.3] - 2026-11-15
 
 ### 新增

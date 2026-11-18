@@ -1,0 +1,27 @@
+# PlatformIO
+firmware/.pio/
+firmware/dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Studio build output
+studio/build/
+studio/dist/
+studio/dist-setup/
+studio/release/
+
+# Data Studio creates at runtime (your own shows, band profiles, logs)
+studio/shows/
+studio/profiles/
+studio/work/
+studio/.onboarded
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

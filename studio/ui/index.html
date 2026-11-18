@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Afterglow Studio</title>
+<link rel="icon" type="image/svg+xml" href="img/afterglow-mark.svg">
+<link rel="stylesheet" href="style.css?v=0.4.3-1">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <img class="logo" src="img/afterglow-mark.svg" alt="">
+      <div><b>Afterglow Studio</b><small id="appver">v</small></div>
+    </div>
+    <nav><span class="nav-pill" id="nav-pill"></span>
+      <a data-page="devices" class="active"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>设备</a>
+      <a data-page="control"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>灯光控制</a>
+      <a data-page="music"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>音乐律动</a>
+      <a data-page="shows"><svg viewBox="0 0 24 24"><path d="M2 20h20M5 20l2-9 5 4 5-4 2 9M12 3v4"/></svg>演唱会复刻</a>
+      <a data-page="flash"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>烧录 / 更新</a>
+      <a data-page="profiles"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>手环档案</a>
+      <a data-page="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>高级设置</a>
+      <a data-page="help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.6v.4M12 17h.01"/></svg>帮助</a>
+      <a data-page="log"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>通信日志</a>
+    </nav>
+    <div class="devbox">
+      <div class="row"><span class="dot" id="sb-dot"></span><span id="sb-title">未连接</span></div>
+      <div id="sb-sub" style="margin-top:4px">在“设备”页连接控制器</div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- DEVICES -->
+    <section class="page active" id="page-devices">
+      <h1>设备</h1><p class="sub">通过 USB 连接控制器后点击“扫描”，然后选择要连接的控制器。</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>串口设备 <span class="tag"><button id="btn-scan">扫描</button></span></h3>
+          <div class="list" id="dev-list"><div class="empty">尚未扫描</div></div>
+        </div>
+        <div class="card">
+          <h3>当前控制器 <span class="tag" id="dev-pill"><span class="pill">未连接</span></span></h3>
+          <div class="row" style="gap:18px;margin-bottom:14px">
+            <div class="preview" id="live-dot"></div>
+            <div><div style="font-size:18px;font-weight:600" id="dev-mode">—</div><div class="mut small" id="dev-meta">连接后显示固件版本和状态</div></div>
+          </div>
+          <div class="grid g3">
+            <div class="stat"><small>麦克风</small><b id="st-mic">—</b></div>
+            <div class="stat"><small>节奏</small><b class="rb"><span class="beat" id="st-beat"></span><span id="st-bpm">—</span></b><small id="st-tempo">未检测到节奏</small></div>
+            <div class="stat"><small>声音</small><div class="meter" style="margin:9px 0 5px"><i id="st-vol"></i></div><small id="st-volt">安静</small></div>
+            <div class="stat"><small>频率 MHz</small><b id="st-freq">—</b></div>
+            <div class="stat"><small>功率 dBm</small><b id="st-dbm">—</b></div>
+            <div class="stat"><small>手机连接</small><b id="st-wifi">—</b></div>
+          </div>
+          <div class="row" style="margin-top:14px"><span class="mut small" id="st-health"></span><span class="spacer"></span><button id="btn-diag">一键诊断</button><button class="danger" id="btn-disconnect">断开</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROL -->
+    <section class="page" id="page-control">
+      <h1>灯光控制</h1><p class="sub">选择颜色后手环将保持常亮。如手环长时间未接收信号，请先唤醒。</p>
+      <div class="card">
+        <h3>固定颜色</h3>
+        <div class="swatches" id="swatches"></div>
+        <div class="row" style="margin-top:16px">
+          <label class="row mut">自定义 <input type="color" id="custom-color" value="#ff3399" style="width:44px;height:32px;border:0;background:none;padding:0"></label>
+          <button id="btn-custom">发送自定义颜色</button>
+          <span class="spacer"></span>
+          <button id="btn-wake">立即唤醒 30 秒</button>
+          <button class="danger" id="btn-off">熄灭</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="page" id="page-music">
+      <h1>音乐律动</h1><p class="sub">可使用控制器内置麦克风（无需电脑），或跟随电脑播放的音频。</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>控制器麦克风 <span class="tag"><button class="primary" id="btn-mic">开始跟随音乐</button></span></h3>
+          <div class="mut small" style="margin-bottom:8px">效果</div>
+          <div class="seg" id="style-seg"></div>
+          <div style="margin-top:14px">
+            <div id="music-sliders"></div>
+            <div class="row end"><button id="btn-reset-music">全部恢复默认</button></div>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <label class="switch"><input type="checkbox" id="t-auto"><i></i></label><span>开机自动跟随音乐</span>
+            <span class="spacer"></span><button id="btn-save">保存到控制器</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>麦克风监测 <span class="tag"><label class="switch"><input type="checkbox" id="t-mon"><i></i></label></span></h3>
+          <div class="meter" style="margin:8px 0 14px"><i id="mic-meter"></i></div>
+          <div class="grid g3">
+            <div class="stat"><small>音量</small><b id="m-level">—</b></div>
+            <div class="stat"><small>节奏</small><b class="rb"><span class="beat" id="m-beat"></span><span id="m-bpm">—</span></b></div>
+            <div class="stat"><small>速度</small><b id="m-tempo">—</b></div>
+          </div>
+          <h3 style="margin-top:22px">电脑音频</h3>
+          <div class="row"><select id="loop-dev" style="flex:1"></select><button id="btn-loop-refresh">刷新</button></div>
+          <div class="row" style="margin-top:10px"><button class="primary" id="btn-loop-start">开始</button><button id="btn-loop-stop">停止</button>
+            <div class="meter" style="flex:1"><i id="loop-meter"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWS -->
+    <section class="page" id="page-shows">
+      <h1>演唱会复刻</h1><p class="sub">根据现场视频生成灯光时间线：颜色来自画面，闪烁来自现场节拍。播放时由电脑输出音频，手环同步变化。</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>我的复刻 <span class="tag"><button id="btn-shows-refresh">刷新</button></span></h3>
+          <div class="list" id="show-list"><div class="empty">暂无复刻</div></div>
+        </div>
+        <div class="card">
+          <h3>生成新的复刻</h3>
+          <label class="field"><span>视频文件</span><div class="row"><input type="text" id="g-video" style="flex:1"><button id="btn-pick-video">选择…</button></div></label>
+          <div class="grid g3">
+            <label class="field"><span>开始（分:秒）</span><input type="text" id="g-start" value="39:00"></label>
+            <label class="field"><span>时长（秒）</span><input type="number" id="g-dur" value="300"></label>
+            <label class="field"><span>名称</span><input type="text" id="g-name" value="新复刻"></label>
+          </div>
+          <div class="row"><button class="primary" id="btn-build">生成</button><span class="mut small" id="g-log"></span></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px" id="editor-card">
+        <h3><span id="ed-title">请选择要播放或编辑的复刻</span><span class="tag pill acc" id="ed-pos">0:00.0</span></h3>
+        <div class="row">
+          <button class="primary" id="btn-play-wake">唤醒 30 秒后播放</button>
+          <button id="btn-play">从光标处播放</button>
+          <button class="danger" id="btn-stop">停止</button>
+          <label class="row mut"><label class="switch"><input type="checkbox" id="t-video" checked><i></i></label>显示原视频</label>
+          <span class="spacer"></span>
+          <span class="ctl"><span class="mut small">音量</span><input type="range" id="p-vol" min="0" max="100" value="35" style="width:100px"><span id="v-vol" class="small val">35</span></span>
+          <span class="ctl"><span class="mut small">灯光提前量</span><input type="range" id="p-lat" min="-200" max="300" step="10" value="80" style="width:100px"><span id="v-lat" class="small val">80ms</span></span>
+        </div>
+        <div class="tl-tools">
+          <span class="mut small">选中段颜色</span><span id="ed-chips" class="row" style="gap:6px"></span>
+          <span class="mut small" style="margin-left:10px">效果</span><div class="seg" id="ed-mode"></div>
+          <div style="flex-basis:100%;height:0"></div>
+          <button id="btn-split">在光标处切分</button><button id="btn-merge">并入下一段</button><button id="btn-del">删除此段</button>
+          <button id="btn-undo">撤销</button><span class="spacer"></span><button class="primary" id="btn-save-show">保存</button>
+        </div>
+        <div class="tl-wrap" id="tl-wrap"><canvas id="tl" height="190"></canvas></div>
+        <div class="row" style="margin-top:8px;flex-wrap:nowrap;align-items:flex-start"><span class="mut small" style="flex:1;min-width:0;line-height:1.6">点击色块选中并定位光标；拖动色块左边缘调整换色时间，靠近鼓点会自动吸附，按住 Alt 可自由放置。下方波形为现场声音，橙色竖线为鼓点。</span>
+          <span class="mut small" style="flex:none">缩放</span><input type="range" id="tl-zoom" min="4" max="80" value="14" style="width:140px;flex:none"></div>
+      </div>
+      <div class="card" style="margin-top:16px" id="dev-shows-card">
+        <h3>控制器中的节目 <span class="tag"><button id="btn-dev-shows">刷新</button></span></h3>
+        <div class="mut small" style="margin-bottom:10px">写入控制器后，可在手机控制页面直接播放，无需电脑。控制器可保存 4 个节目，仅保存灯光时间线，不含视频和音频。先在上方选中一个复刻，再点击要写入的位置。</div>
+        <label class="field"><span>节目名称（显示在手机上）</span><input type="text" id="dev-show-name" placeholder="请先在上方选中一个复刻" maxlength="16"></label>
+        <div class="list" id="dev-show-list"><div class="empty">请先连接控制器</div></div>
+      </div>
+    </section>
+
+    <!-- FLASH -->
+    <section class="page" id="page-flash">
+      <h1>烧录 / 更新</h1><p class="sub">支持多台控制器同时烧录。“仅更新程序”保留控制器上的设置和节目；“完整安装”用于新控制器出厂，会恢复出厂状态，清空设置和控制器中保存的全部节目。</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>固件包</h3>
+          <div class="row"><select id="pkg" style="flex:1"></select><button id="btn-pkg-pick">其他…</button></div>
+          <div class="mut small" id="pkg-info" style="margin-top:8px"></div>
+          <h3 style="margin-top:20px">目标控制器 <span class="tag"><button id="btn-flash-scan">扫描</button></span></h3>
+          <div class="list" id="flash-ports"><div class="empty">请点击“扫描”</div></div>
+          <div class="row" style="margin-top:12px">
+            <div class="seg" id="flash-mode"><button data-v="full">完整安装（出厂）</button><button data-v="app" class="on">仅更新程序</button></div>
+            <span class="spacer"></span><button class="primary" id="btn-flash">烧录所选</button>
+          </div>
+          <h3 style="margin-top:20px">Wi-Fi 更新</h3>
+          <div class="mut small" style="margin-bottom:8px">请先将电脑连接到控制器的 Afterglow-XXXX 热点。</div>
+          <div class="row"><input type="text" id="ota-host" value="192.168.4.1" style="width:140px"><button id="btn-ota">通过 Wi-Fi 更新</button></div>
+        </div>
+        <div class="card"><h3>过程</h3><div id="flash-prog" class="fprog" hidden><div class="row"><span id="flash-prog-t">正在刷入…</span><span class="spacer"></span><b id="flash-prog-n">0%</b></div><div class="meter"><i id="flash-prog-bar"></i></div></div><div id="flash-err" class="fixcard" hidden></div><div class="console" id="flash-log" style="height:380px"></div></div>
+      </div>
+    </section>
+
+    <!-- PROFILES -->
+    <section class="page" id="page-profiles">
+      <h1>手环档案</h1><p class="sub">不同批次的手环工作频率可能略有偏差。可为每批手环保存一份档案，并应用到控制器。</p>
+      <div class="card" style="margin-bottom:16px" id="adapt-card">
+        <h3>手环频率适配 <span class="tag pill acc">逐个频率测试</span></h3>
+        <div class="mut small" style="margin-bottom:12px">用于反应不灵敏或无法点亮的手环。第一轮以最大功率在各候选频率上发送红蓝闪烁信号，确定可用范围；若多个频率均有反应，第二轮会自动降低功率重新测试，以精确定位中心频率。请根据手环是否跟随闪烁作出选择。每个频率约需 20–30 秒。</div>
+        <div class="row" id="adapt-form">
+          <label class="mut small">起始 MHz <input type="number" id="ad-from" value="433.72" step="0.01" style="width:96px"></label>
+          <label class="mut small">结束 MHz <input type="number" id="ad-to" value="434.12" step="0.01" style="width:96px"></label>
+          <label class="mut small">间隔 MHz <input type="number" id="ad-step" value="0.05" step="0.005" style="width:80px"></label>
+          <label class="mut small">每个频率 秒 <input type="number" id="ad-dwell" value="30" style="width:70px"></label>
+          <span class="spacer"></span><button class="primary" id="btn-adapt">开始适配</button>
+        </div>
+        <div id="adapt-run" style="display:none;margin-top:6px">
+          <div class="row"><div><div class="mut small" id="ad-phase">正在测试</div><div style="font-size:22px;font-weight:700" id="ad-freq">—</div></div>
+            <span class="spacer"></span><span class="pill" id="ad-left">—</span></div>
+          <div class="meter" style="margin:12px 0"><i id="ad-bar"></i></div>
+          <div class="row"><button class="primary" id="btn-ad-yes">全部有反应</button><button id="btn-ad-part">部分有反应</button><button id="btn-ad-no">无反应</button><span class="spacer"></span><button class="danger" id="btn-ad-stop">停止</button></div>
+        </div>
+        <div id="ad-chips" class="row" style="margin-top:12px;gap:6px"></div>
+        <div id="ad-result" style="display:none;margin-top:14px"></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h3>档案 <span class="tag"><button id="btn-prof-new">新建</button></span></h3><div class="list" id="prof-list"></div></div>
+        <div class="card">
+          <h3>编辑</h3>
+          <label class="field"><span>名称</span><input type="text" id="pf-name"></label>
+          <label class="field"><span>批次 / 来源</span><input type="text" id="pf-venue"></label>
+          <label class="field"><span>电路板 / 晶振</span><input type="text" id="pf-pcb"></label>
+          <div class="grid g2">
+            <label class="field"><span>频率 MHz</span><input type="number" step="0.0005" id="pf-freq"></label>
+            <label class="field"><span>功率 dBm</span><select id="pf-dbm"><option>-10</option><option>0</option><option>5</option><option>10</option></select></label>
+            <label class="field"><span>位宽 us</span><input type="number" id="pf-bitus"></label>
+            <label class="field"><span>帧间隔 ms</span><input type="number" id="pf-period"></label>
+          </div>
+          <label class="field"><span>备注</span><textarea id="pf-notes" rows="3"></textarea></label>
+          <div class="row"><button class="primary" id="btn-prof-apply">应用到控制器</button><button id="btn-prof-read">从控制器读取</button>
+            <span class="spacer"></span><button class="danger" id="btn-prof-del">删除</button><button id="btn-prof-save">保存</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADAPT (rendered inside the profiles page by app.js) -->
+    <!-- SETTINGS -->
+    <section class="page" id="page-settings">
+      <h1>高级设置</h1><p class="sub">修改后点“保存到控制器”，断电后仍然有效。</p>
+      <div class="grid g2">
+        <div class="card">
+          <h3>亮度上限（防止电池供电不足导致闪烁）</h3>
+          <div id="power-sliders"></div>
+          <div class="row" style="margin-top:10px"><button class="primary" id="btn-bat">电池检测</button></div><div id="bat-res" style="margin-top:12px"></div>
+          <div class="mut small">用于防止电池供电不足导致的闪烁。默认值：单色 80%，三色合计 125%。</div>
+        </div>
+        <div class="card">
+          <h3>手环唤醒</h3>
+          <div class="row" style="margin-bottom:6px"><label class="switch"><input type="checkbox" id="t-ka"><i></i></label><span>保持手环唤醒</span></div>
+          <div class="mut small" style="margin-bottom:14px">控制器开机期间持续唤醒手环，操作即时生效（推荐开启）。</div>
+          <div class="row" style="margin-bottom:6px"><label class="switch"><input type="checkbox" id="t-aoff"><i></i></label><span>信号中断后自动熄灭</span></div>
+          <div class="mut small" style="margin-bottom:18px">控制器断电或手环离开信号范围约 30–40 秒后，手环自动熄灭以节省电量（推荐开启）。</div>
+          <h3>手机热点</h3>
+          <div class="row"><label class="switch"><input type="checkbox" id="t-wifi"><i></i></label><span>开机打开 Afterglow 热点（重启后生效）</span></div>
+          <label class="field" style="margin-top:12px"><span>热点密码（8–20 位）</span><div class="row"><input type="text" id="wifi-pass" style="flex:1"><button id="btn-wifi-pass">修改</button></div></label>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px"><h3>设置备份</h3>
+        <div class="mut small" style="margin-bottom:12px">把频率、亮度上限、效果等设置保存成文件，换控制器或恢复出厂后一键恢复。热点密码不会写入备份。</div>
+        <div class="row"><button id="btn-export-settings">导出设置</button><button id="btn-import-settings">从文件恢复</button><span class="mut small" id="backup-msg"></span></div></div>
+      <div class="row" style="margin-top:16px"><button class="primary" id="btn-save2">保存到控制器</button><button id="btn-reboot">重启控制器</button>
+        <span class="spacer"></span><button class="danger" id="btn-factory">恢复出厂设置</button></div>
+      <div class="mut small" style="margin-top:8px;text-align:right">恢复出厂设置会清除全部设置（含频率、亮度上限、热点密码）和控制器中保存的节目，然后重启。</div>
+    </section>
+
+    <!-- HELP -->
+    <section class="page" id="page-help">
+      <h1>帮助</h1><p class="sub">常见问题。手机控制页面的“帮助”中有同样的内容。</p>
+      <div class="row" style="margin:-4px 0 18px;gap:10px"><button class="primary" id="btn-diag2">一键诊断</button><button id="btn-guide">重新打开新手引导</button><span class="mut small">遇到问题先点“一键诊断”，可以把报告直接复制发到群里。</span></div>
+      <div class="grid g2 help-grid"><div class="card help-item"><h3>手环不亮怎么办</h3><div class="mut small" style="line-height:1.75">先点“手环唤醒”里的“立即唤醒 30 秒”，期间把手环<b>竖放</b>在控制器旁 30 厘米以内。仍然不亮时，检查电池是否装反或电量不足，可更换两颗 CR2032 纽扣电池。如果还是不亮，可以运行“手环频率适配”自动寻找合适的频率。</div></div><div class="card help-item"><h3>手环能离控制器多远</h3><div class="mut small" style="line-height:1.75">换上新电池后，手环竖放时约 1.3 米内可稳定跟随，平放约 75 厘米。手环朝向影响很大，竖放（灯面朝向侧面）效果最好。演唱会带回的旧电池会明显缩短距离，建议更换新电池。</div></div><div class="card help-item"><h3>手环闪烁或亮度不稳定</h3><div class="mut small" style="line-height:1.75">通常是电池电量不足，在红、橙、黄、粉等较亮的颜色下更明显。请运行“电池检测”，控制器会自动设置不会闪烁的亮度上限；或更换新电池。</div></div><div class="card help-item"><h3>“熄灭”后手环还耗电吗</h3><div class="mut small" style="line-height:1.75">“熄灭”只是关闭灯光，手环仍在接收信号，耗电比亮灯时少得多。控制器关闭后，手环会自动进入休眠。长期不用时，建议取出电池，或在电池与触点之间垫一张小纸片。</div></div><div class="card help-item"><h3>页面打不开或提示“未连接到控制器”</h3><div class="mut small" style="line-height:1.75">请确认手机已连接控制器的 Afterglow 热点。由于热点没有互联网，手机有时会自动切换回其他 Wi-Fi，请在“设置 → Wi-Fi”中重新连接。在 Safari 中输入 <b>http://afterglow.local</b> 或 <b>192.168.4.1</b> 即可打开本页面。</div></div><div class="card help-item"><h3>怎样更快打开控制页面</h3><div class="mut small" style="line-height:1.75">在 Safari 中打开本页面后，点击底部的“分享”按钮，选择“添加到主屏幕”。以后连上控制器热点，直接点主屏幕上的 Afterglow 图标即可打开，无需再输入网址。</div></div><div class="card help-item"><h3>演唱会复刻怎么使用</h3><div class="mut small" style="line-height:1.75">复刻节目需要先在电脑端 Afterglow Studio 中根据你自己录制的视频生成，再写入控制器，最多保存 4 个。播放时可选择手机中对应的音乐，灯光会与音乐同步。</div></div><div class="card help-item"><h3>可以用数据线连接手机控制吗</h3><div class="mut small" style="line-height:1.75">不支持。iPhone 的 Safari 不允许网页访问 USB 设备。没有手机时，可以短按控制器上的按键，依次切换：跟随音乐、红、绿、蓝、白、熄灭；长按 3 秒可以开启或关闭热点。</div></div><div class="card help-item"><h3>隐私说明</h3><div class="mut small" style="line-height:1.75">控制器不连接互联网，不需要注册账号，也不收集任何使用数据。麦克风只用于实时计算音量和节拍，不录音、不保存、不上传。选择的音乐只在本机播放，不会上传到控制器或其他地方。</div></div><div class="card help-item"><h3>如何从视频生成演唱会复刻</h3><div class="mut small" style="line-height:1.75">在“演唱会复刻”页面选择你自己录制的视频，填写开始时间和时长后点击“生成”。软件会从画面提取主题色、从现场声音提取鼓点，生成灯光时间线；可在下方时间线上调整换色点和效果，换色点靠近鼓点时会自动吸附。保存后写入控制器，即可在手机上播放。</div></div><div class="card help-item"><h3>如何更新控制器固件</h3><div class="mut small" style="line-height:1.75">用 USB 线连接控制器，在“烧录 / 更新”页面选择固件包，勾选控制器后选择“仅更新程序”并点击“烧录所选”，设置和节目都会保留。也可以让电脑连接控制器热点，通过 Wi-Fi 更新；控制器只接受 Afterglow 固件，选错文件会被拒绝。</div></div><div class="card help-item"><h3>烧录时提示串口被占用</h3><div class="mut small" style="line-height:1.75">同一时间只能有一个程序使用控制器的 USB 串口。请先在“设备”页面断开控制器，或关闭其他串口工具，然后重试。</div></div><div class="card help-item"><h3>“完整安装”和“仅更新程序”有什么区别</h3><div class="mut small" style="line-height:1.75">“仅更新程序”只替换固件，保留频率、亮度上限等设置和控制器里的节目。“完整安装”用于新控制器出厂，会恢复出厂状态，清空全部设置和节目。</div></div></div>
+    </section>
+
+    <!-- LOG -->
+    <section class="page" id="page-log">
+      <h1>通信日志</h1><p class="sub">控制器与电脑之间的串口收发记录。</p>
+      <div class="row" style="margin-bottom:10px"><input type="text" id="raw-cmd" placeholder="直接发送命令，例如 status" style="flex:1"><button id="btn-raw">发送</button></div>
+      <div class="console tall" id="log"></div>
+    </section>
+  </main>
+</div>
+<div class="modal" id="bat-modal"><div class="card" style="width:420px;text-align:center"><div id="bat-run">
+  <div class="mut" id="bat-phase">电池检测</div><div id="bat-step" style="font-size:22px;font-weight:700;margin:8px 0">准备…</div>
+  <div class="mut small">请将手环放在控制器旁边，观察约 5 秒后作出选择。如果偶尔出现闪烁，也请选择<b>“出现闪烁”</b>。</div>
+  <div class="meter" style="margin:16px 0"><i id="bat-bar"></i></div>
+  <div class="row" style="justify-content:center"><button id="btn-bat-ok-stable" style="padding:12px 36px">稳定</button><button class="primary" id="btn-bat-flash" style="padding:12px 36px">出现闪烁</button><button id="btn-bat-cancel">取消</button></div></div>
+  <div id="bat-done" style="display:none"><div id="bat-ico"></div><div id="bat-title" style="font-size:24px;font-weight:800;margin:10px 0 6px"></div>
+  <div class="mut" id="bat-desc" style="line-height:1.7"></div><button class="primary" id="btn-bat-ok" style="margin-top:18px;padding:10px 40px">确定</button></div>
+</div></div>
+<div class="modal" id="video-modal"><div class="card video-card">
+  <div class="row" style="margin-bottom:10px"><b id="video-title">原视频</b><span class="spacer"></span><button id="btn-video-close">停止并关闭</button></div>
+  <video id="show-video" playsinline preload="auto"></video>
+  <div class="vbar">
+    <button class="vplay" id="btn-vplay" title="播放 / 暂停（空格）" aria-label="播放 / 暂停">
+      <svg class="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>
+      <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+    </button>
+    <input type="range" id="v-seek" min="0" max="300" step="0.1" value="0" aria-label="播放进度">
+    <span class="small vtime" id="video-time">0:00.0 / 0:00.0</span>
+  </div>
+  <div class="mut small" style="margin-top:8px">手环跟随视频进度：暂停时保持当前颜色，拖动进度条后从新位置继续。空格键播放 / 暂停。</div>
+</div></div>
+<div class="modal" id="diag-modal"><div class="card diag-card">
+  <div class="row"><h3 style="margin:0">一键诊断</h3><span class="spacer"></span><button class="ghost" id="btn-diag-close">关闭</button></div>
+  <div class="mut small" id="diag-sub" style="margin:6px 0 14px">正在检查…</div>
+  <div class="diag-list" id="diag-list"></div>
+  <div class="row" style="margin-top:16px"><span class="mut small">报告不含个人信息，可以直接发到群里。</span><span class="spacer"></span><button id="btn-diag-again">重新检查</button><button class="primary" id="btn-diag-copy">复制报告</button></div>
+</div></div>
+<div class="modal" id="guide-modal"><div class="card guide-card">
+  <div class="guide-top"><div class="guide-steps"><span data-s="1">连接控制器</span><i></i><span data-s="2">刷入固件</span><i></i><span data-s="3">用手机连接</span></div><button class="ghost small" id="btn-guide-skip">跳过引导</button></div>
+  <div class="guide-body" data-step="1">
+    <h2>用数据线把控制器连到电脑</h2>
+    <p class="mut">插上后会自动识别，不用点任何按钮。</p>
+    <div class="guide-status" id="g1-status"><span class="spin"></span><span id="g1-text">正在寻找控制器…</span></div>
+    <div class="fixcard" id="g1-fix" hidden></div>
+  </div>
+  <div class="guide-body" data-step="2" hidden>
+    <h2 id="g2-title">刷入固件</h2>
+    <p class="mut" id="g2-sub">大约 1 分钟，期间不要拔线。</p>
+    <div class="fprog" id="g2-prog"><div class="row"><span id="g2-pt">准备中</span><span class="spacer"></span><b id="g2-pn">0%</b></div><div class="meter"><i id="g2-bar"></i></div></div>
+    <div class="fixcard" id="g2-fix" hidden></div>
+    <div class="row" style="margin-top:18px"><span class="spacer"></span><button class="primary" id="btn-g2-go">刷入固件</button></div>
+  </div>
+  <div class="guide-body" data-step="3" hidden>
+    <h2>用手机连接控制器</h2>
+    <p class="mut">控制器已经准备好了。拿起手机：</p>
+    <ol class="guide-ol">
+      <li>打开 <b>设置 → Wi-Fi</b>，连接 <b class="big" id="g3-ssid">Afterglow-XXXX</b></li>
+      <li id="g3-pwline">密码 <b class="big" id="g3-pw">afterglow88</b><span class="mut small" id="g3-pwnote" hidden><br>忘了的话，可以在 Studio 的“高级设置”里重新设一个热点密码。</span></li>
+      <li>控制页面会自动弹出；没弹出就在浏览器打开 <b>192.168.4.1</b></li>
+    </ol>
+    <p class="mut small">手机提示“此网络无法上网”时，选“保持连接”。以后也可以一直在电脑上用 Afterglow Studio 控制。</p>
+    <div class="row" style="margin-top:18px"><span class="spacer"></span><button class="primary" id="btn-g3-done">开始使用</button></div>
+  </div>
+</div></div>
+<div class="toast-box" id="toasts"></div>
+<script>if (location.search.indexOf('mock') >= 0) document.write('<script src="mock.js"><\/script>');</script>
+<script src="app.js?v=0.4.3-1"></script>
+</body>
+</html>
