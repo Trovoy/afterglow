@@ -6,9 +6,11 @@
   const ok = (data) => Promise.resolve({ ok: true, data });
   window.pywebview = { api: {
     app_info: () => Promise.resolve({ version: '0.4.3' }),
-    scan: () => ok(location.search.includes('guide=1') ? [] : [
+    scan: () => location.search.includes('porterr') ? ok([{ port: 'COM5', desc: 'USB-SERIAL CH340 (COM5)', error: 'SerialTimeoutException: Write timeout', state: 'error' }]) :
+      ok(location.search.includes('guide=1') ? [] : [
       { port: 'COM4', desc: 'USB-SERIAL CH340 (COM4)', fw: 'afterglow-fw', ver: '0.9.2', mac: 'A0B1C2D3E4F5', ssid: 'Afterglow-E4F5', state: 'ready' },
       { port: 'COM9', desc: 'USB-SERIAL CH340 (COM9)', unknown: true, state: 'blank' }]),
+    port_error_hint: (port, error) => Promise.resolve({ kind: 'port_error', title: `找到了板子（${port}），但读不到它`, steps: ['按一下 EN 键'], detail: `${port}：${error}` }),
     scan_hint: () => Promise.resolve({ kind: 'driver', title: '电脑认出了板子，但缺少 CH340 驱动',
       steps: ['在浏览器搜索“CH340 驱动”，到芯片厂家官网下载（CH340 是“沁恒”官网）', '安装后拔掉数据线再插上', '回到这里，会自动重新检测'] }),
     latest_firmware: () => Promise.resolve({ path: 'p', version: '0.9.2' }),

@@ -35,6 +35,17 @@ def usb_serial_chips():
     return out
 
 
+def port_error_hint(port, error):
+    """The board's port shows up and opens, but talking to it fails (old / mixed driver, clone chip, board held
+    in reset or download mode). Show the real error so the fan can send it to us."""
+    return {'kind': 'port_error', 'title': f'找到了板子（{port}），但读不到它',
+            'steps': ['按一下 ESP32 上的 EN（或 RST）小按键，等几秒',
+                      '拔掉数据线重新插上，换一个电脑主机上的 USB 口（不要用扩展坞）',
+                      '还不行：设备管理器里右键这个 CH340 设备 → 卸载设备（勾选删除驱动），再装沁恒官网的驱动',
+                      '仍然不行，把下面这行报错截图发给我们'],
+            'detail': f'{port}：{error}'}
+
+
 def no_port_hint():
     """Why the port list is empty, as {'title', 'steps'}."""
     chips = usb_serial_chips()

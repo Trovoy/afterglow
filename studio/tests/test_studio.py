@@ -192,6 +192,42 @@ class ReleaseCheck(unittest.TestCase):
             self.assertFalse(release_check.bad(good), good)
 
 
+class PortProbe(unittest.TestCase):
+    """A port that opens but fails on read/write must come back as an error row, not break the whole scan."""
+    def test_read_write_failure_is_reported(self):
+        import serial
+        import device
+        import helpdesk
+
+        class Broken:
+            def reset_input_buffer(self): pass
+            def write(self, _): raise serial.SerialTimeoutException('Write timeout')
+            def close(self): raise OSError('already gone')
+        orig = device.open_port
+        device.open_port = lambda port, timeout=0.05: Broken()
+        try:
+            info = device.probe('COM5')
+        finally:
+            device.open_port = orig
+        self.assertIn('Write timeout', info['error'])
+        hint = helpdesk.port_error_hint('COM5', info['error'])
+        self.assertIn('COM5', hint['title'])
+        self.assertIn('Write timeout', hint['detail'])
+
+    def test_port_that_will_not_open_is_busy(self):
+        import serial
+        import device
+
+        def refuse(port, timeout=0.05):
+            raise serial.SerialException('could not open port')
+        orig = device.open_port
+        device.open_port = refuse
+        try:
+            self.assertEqual(device.probe('COM5'), {'busy': True})
+        finally:
+            device.open_port = orig
+
+
 class Waveform(unittest.TestCase):
     def test_peaks(self):
         import wave

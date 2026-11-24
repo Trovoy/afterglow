@@ -50,7 +50,7 @@ import helpdesk
 import profiles
 import videoserve
 
-APP_VERSION = '0.4.3'
+APP_VERSION = '0.4.4'
 
 
 def base_dir():
@@ -127,16 +127,25 @@ class Api:
             latest, latest_built = lp.get('version'), lp.get('built')
             rows = []
             for p in device.list_serial_ports():
-                info = dict(self._dev.info or {}, connected=True) if p['port'] == busy else device.probe(p['port'])
+                try:
+                    info = dict(self._dev.info or {}, connected=True) if p['port'] == busy else device.probe(p['port'])
+                except Exception as e:
+                    info = {'error': f'{type(e).__name__}: {e}'}
                 row = {**p, **info}
-                # state for the guide: ready (latest firmware) / old / blank (no Afterglow firmware yet) / busy
+                # state for the guide: ready (latest firmware) / old / blank (no Afterglow firmware yet) / busy /
+                # error (the port opens but can't be read: driver, chip or a stuck board)
                 if row.get('fw'):
                     row['state'] = 'old' if helpdesk.firmware_is_older(row, latest, latest_built) else 'ready'
+                elif row.get('error'):
+                    row['state'] = 'error'
                 else:
                     row['state'] = 'busy' if row.get('busy') else 'blank'
                 rows.append(row)
             return rows
         return self._call(work)
+
+    def port_error_hint(self, port, error):
+        return helpdesk.port_error_hint(port, error)
 
     def scan_hint(self):
         """Why no board shows up (empty port list): missing driver vs. cable/port."""

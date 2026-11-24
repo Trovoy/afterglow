@@ -6,6 +6,12 @@
 
 ## [未发布]
 
+## [Studio 0.4.4 / 固件 0.9.3] - 2026-11-24
+
+### 修复
+
+- 电脑认到了板子（设备管理器里有 COM 口），新手引导却一直显示「没有检测到控制器」的问题。原因是串口能打开但读写出错时，整次扫描都会失败；现在只标记出错的那个口，引导页和设备页直接显示「找到了板子，但读不到它」、报错原文和处理步骤
+
 ### 开源
 
 - 固件、手机控制页面和电脑端 Afterglow Studio 的全部源代码按 MIT 许可证开源，见 `firmware/` 和 `studio/` 目录
@@ -65,6 +71,7 @@
 
 - 发射功率 10 dBm（10 mW），频率、码元宽度已用无线电测量设备核对；室内有效距离约 1 米（0.7～1.3 米，取决于手环朝向和摆放）
 
+[Studio 0.4.4 / 固件 0.9.3]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.4
 [Studio 0.4.3 / 固件 0.9.3]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.3
 [Studio 0.4.2 / 固件 0.9.2]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.2
 [Studio 0.4.1 / 固件 0.9.2]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.1

@@ -93,11 +93,13 @@ async function scan() {
     const el = document.createElement('div'); el.className = 'item';
     let pill = '<span class="pill">还没刷固件</span>';
     if (d.busy) pill = '<span class="pill warn" title="关掉其他正在使用它的程序后重新扫描">被其他程序占用</span>';
+    if (d.state === 'error') pill = `<span class="pill warn" title="${esc(d.error)}">读不到板子</span>`;
     if (d.fw) pill = `<span class="pill ${d.connected ? 'ok' : 'acc'}">${d.connected ? '已连接 · ' : ''}固件 ${d.ver}${d.state === 'old' ? ' · 可更新' : ''}</span>`;
     const btn = d.fw && !d.connected ? '<button class="primary">连接</button>' : (d.state === 'blank' ? '<button class="primary">刷入固件</button>' : '');
     el.innerHTML = `<div class="ico">${ICON_CHIP}</div><div style="flex:1"><b>${d.port}</b><div class="mut small">${d.desc}${d.mac ? ' · ' + d.mac : ''}</div></div>${pill}${btn}`;
     const b = el.querySelector('button'); if (b) b.onclick = () => d.fw ? connect(d.port) : openGuide(d.port);
     $('dev-list').appendChild(el);
+    if (d.state === 'error') api().port_error_hint(d.port, d.error).then(h => el.insertAdjacentHTML('afterend', fixHTML(h, true)));
   });
 }
 async function connect(port) {
@@ -282,7 +284,7 @@ async function scanFlash() {
   r.data.forEach(d => { const el = document.createElement('label'); el.className = 'item';
     const one = r.data.length === 1 && !d.busy;   // a single board: select it, nobody should have to tick a lone checkbox
     el.innerHTML = `<input type="checkbox" class="check" value="${d.port}"${one ? ' checked' : ''}><div style="flex:1"><b>${d.port}</b><div class="mut small">${d.desc}</div></div>
-      <span class="pill ${d.fw ? 'acc' : ''}">${d.fw ? '固件 ' + d.ver + (d.state === 'old' ? ' · 可更新' : '') : (d.busy ? '被占用' : '还没刷固件')}</span>`;
+      <span class="pill ${d.fw ? 'acc' : ''}">${d.fw ? '固件 ' + d.ver + (d.state === 'old' ? ' · 可更新' : '') : (d.busy ? '被占用' : (d.state === 'error' ? '读不到板子' : '还没刷固件'))}</span>`;
     $('flash-ports').appendChild(el); });
 }
 $('btn-flash-scan').onclick = scanFlash;
@@ -572,7 +574,8 @@ window.addEventListener('resize', drawTL);
 
 // ---------- helpdesk: plain-language fixes, flash progress, one-click diagnose ----------
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const stepsHTML = (info) => `<b class="t">${esc(info.title)}</b><ol>${(info.steps || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>`;
+const stepsHTML = (info) => `<b class="t">${esc(info.title)}</b><ol>${(info.steps || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>`
+  + (info.detail ? `<div class="mut small" style="user-select:text;margin-top:6px;word-break:break-all">报错：${esc(info.detail)}</div>` : '');
 const fixHTML = (info, bad) => `<div class="fixcard${bad ? ' bad' : ''}">${stepsHTML(info)}</div>`;
 
 function flashProgress(e) {
@@ -625,7 +628,8 @@ async function guideScan() {
   if (guide.step !== 1 || !$('guide-modal').classList.contains('show')) return;
   const r = await api().scan();
   const rows = (r && r.ok) ? r.data : [];
-  const usable = rows.find(d => d.state !== 'busy');
+  const usable = rows.find(d => d.state !== 'busy' && d.state !== 'error');
+  const broken = rows.find(d => d.state === 'error');
   if (usable) {
     guide.port = usable.port;
     $('g1-status').className = 'guide-status ok'; $('g1-fix').hidden = true;
@@ -635,7 +639,15 @@ async function guideScan() {
     setTimeout(guideFlashPage, 900); return;
   }
   $('g1-status').className = 'guide-status';
-  if (rows.length) {
+  if (r && r.ok === false) {             // the scan itself failed: show why instead of "no controller found"
+    $('g1-text').textContent = '检测时出错了';
+    $('g1-fix').hidden = false;
+    $('g1-fix').innerHTML = stepsHTML({ title: '检测控制器时出错', steps: ['拔掉数据线重新插上', '重新打开 Afterglow Studio', '仍然不行，把下面这行报错截图发给我们'], detail: r.err });
+  } else if (broken) {
+    $('g1-text').textContent = `找到了板子（${broken.port}），但读不到它`;
+    $('g1-fix').hidden = false;
+    $('g1-fix').innerHTML = stepsHTML(await api().port_error_hint(broken.port, broken.error));
+  } else if (rows.length) {
     $('g1-text').textContent = '找到了板子，但它被别的程序占用';
     $('g1-fix').hidden = false;
     $('g1-fix').innerHTML = stepsHTML({ title: '端口被别的程序占用了', steps: ['关掉串口助手、Arduino 或另一个 Afterglow Studio', '拔掉数据线重新插上'] });

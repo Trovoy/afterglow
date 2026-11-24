@@ -138,7 +138,8 @@ class Device:
 
 
 def probe(port, timeout=1.2):
-    """Return hello info for an Afterglow controller on this port, {'busy':True} or {'unknown':True}."""
+    """Return hello info for an Afterglow controller on this port, {'busy':True}, {'unknown':True}, or
+    {'error': text} when the port opens but reading / writing it fails (driver or chip trouble, board stuck)."""
     try:
         s = open_port(port, timeout=0.05)
     except (serial.SerialException, OSError):
@@ -158,8 +159,13 @@ def probe(port, timeout=1.2):
                 if msg.get('fw'):
                     return msg
         return {'unknown': True}
+    except Exception as e:   # one bad port must not hide the others (or the reason) from the scan
+        return {'error': f'{type(e).__name__}: {e}'.strip(': ')}
     finally:
-        s.close()
+        try:
+            s.close()
+        except Exception:
+            pass
 
 
 def list_serial_ports():
