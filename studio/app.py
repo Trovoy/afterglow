@@ -50,7 +50,7 @@ import helpdesk
 import profiles
 import videoserve
 
-APP_VERSION = '0.4.4'
+APP_VERSION = '0.4.5'
 
 
 def base_dir():

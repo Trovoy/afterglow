@@ -6,6 +6,12 @@
 
 ## [未发布]
 
+## [Studio 0.4.5 / 固件 0.9.3] - 2026-11-24
+
+### 修复
+
+- 扫描时把蓝牙、主板这类虚拟串口也列了出来，并误报「读不到板子」（报错 Write timeout）。现在只列 USB 串口，电脑上开着蓝牙也不会再干扰识别控制器
+
 ## [Studio 0.4.4 / 固件 0.9.3] - 2026-11-24
 
 ### 修复
@@ -71,6 +77,7 @@
 
 - 发射功率 10 dBm（10 mW），频率、码元宽度已用无线电测量设备核对；室内有效距离约 1 米（0.7～1.3 米，取决于手环朝向和摆放）
 
+[Studio 0.4.5 / 固件 0.9.3]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.5
 [Studio 0.4.4 / 固件 0.9.3]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.4
 [Studio 0.4.3 / 固件 0.9.3]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.3
 [Studio 0.4.2 / 固件 0.9.2]: https://github.com/Trovoy/afterglow/releases/tag/v0.4.2

@@ -227,6 +227,20 @@ class PortProbe(unittest.TestCase):
         finally:
             device.open_port = orig
 
+    def test_bluetooth_and_motherboard_ports_are_skipped(self):
+        from types import SimpleNamespace as P
+        import device
+        fake = [P(device='COM4', description='蓝牙链接上的标准串行 (COM4)', vid=None),
+                P(device='COM1', description='通信端口 (COM1)', vid=None),
+                P(device='COM5', description='USB-SERIAL CH340 (COM5)', vid=0x1A86),
+                P(device='COM7', description='USB 串行设备 (COM7)', vid=0x303A)]
+        orig = device.list_ports.comports
+        device.list_ports.comports = lambda: fake
+        try:
+            self.assertEqual([p['port'] for p in device.list_serial_ports()], ['COM5', 'COM7'])
+        finally:
+            device.list_ports.comports = orig
+
 
 class Waveform(unittest.TestCase):
     def test_peaks(self):

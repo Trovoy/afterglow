@@ -168,6 +168,13 @@ def probe(port, timeout=1.2):
             pass
 
 
+def _is_usb(p):
+    """A controller is always a USB serial chip. Bluetooth (BTHENUM), motherboard (ACPI) and other virtual
+    COM ports have no USB vendor id; probing them only produces timeouts that look like a broken board."""
+    desc = p.description or ''
+    return p.vid is not None or 'CH340' in desc or 'CP210' in desc
+
+
 def list_serial_ports():
-    return [{'port': p.device, 'desc': p.description, 'usb': 'CH340' in (p.description or '') or 'CP210' in (p.description or '')}
-            for p in sorted(list_ports.comports(), key=lambda p: p.device)]
+    return [{'port': p.device, 'desc': p.description, 'usb': True}
+            for p in sorted(list_ports.comports(), key=lambda p: p.device) if _is_usb(p)]
